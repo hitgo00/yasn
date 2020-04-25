@@ -1,0 +1,42 @@
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import IconButton from "@material-ui/core/IconButton";
+import SendIcon from "@material-ui/icons/Send";
+
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import FormControl from "@material-ui/core/FormControl";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(1),
+  },
+  comment: {
+    maxWidth: 345,
+  },
+}));
+
+export default function InputWithIcon() {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <div className={classes.margin}>
+        <FormControl fullWidth className={classes.margin}>
+          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+          <Input id="standard-adornment-amount" />
+        </FormControl>
+
+        {/* <Grid item xs={2}>
+            <IconButton aria-label="send" size="medium">
+              <SendIcon />
+            </IconButton>
+          </Grid>
+        */}
+      </div>
+    </div>
+  );
+}
