@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Da-Connect",
+  "name": "Exclusive SN for DA",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,6 +19,7 @@
     }
   ],
   "start_url": ".",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

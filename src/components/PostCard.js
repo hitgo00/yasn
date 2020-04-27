@@ -63,17 +63,17 @@ export default function PostCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title="Project AcadVault"
+        subheader="April 14, 2020"
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image="https://picsum.photos/seed/picsum/200/"
+        title="AcadVault"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
+          A living open-source repository of academic resources!
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -98,20 +98,8 @@ export default function PostCard() {
         <CardContent>
           <AddComment />
           <Typography paragraph>List of comments:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken and
-            chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-            onion, salt and pepper, and cook, stirring often until thickened and
-            fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2
-            cups chicken broth; bring to a boil.
-          </Typography>
+
+          <Typography paragraph>Great project guys!</Typography>
           <Typography paragraph>
             Add rice and stir very gently to distribute. Top with artichokes and
             peppers, and cook without stirring, until most of the liquid is

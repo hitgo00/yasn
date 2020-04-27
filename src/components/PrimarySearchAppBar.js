@@ -15,18 +15,25 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
+import DonutSmallIcon from "@material-ui/icons/DonutSmall";
+
+import { Link } from "@reach/router";
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    marginBottom: 65,
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "white",
   },
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
+    color: "white",
   },
   search: {
     position: "relative",
@@ -131,14 +138,16 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={3} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
+      <Link to="/chat">
+        <MenuItem>
+          <IconButton aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={3} color="secondary">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <p>Messages</p>
+        </MenuItem>
+      </Link>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -163,7 +172,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
@@ -173,6 +182,11 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
+          <Link to="/">
+            <IconButton>
+              <DonutSmallIcon />
+            </IconButton>
+          </Link>
           <Typography className={classes.title} variant="h6" noWrap>
             DA-Connect
           </Typography>
@@ -191,11 +205,13 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+            <Link to="/chat">
+              <IconButton aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+            </Link>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
