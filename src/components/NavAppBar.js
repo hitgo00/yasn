@@ -41,7 +41,7 @@ const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    marginBottom: 65,
+    marginBottom: 70,
   },
 
   title: {

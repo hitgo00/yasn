@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import AddComment from "./AddComment";
+import Comment from "./Comment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +56,7 @@ export default function PostCard() {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            H
           </Avatar>
         }
         action={
@@ -97,21 +98,8 @@ export default function PostCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <AddComment />
-          <Typography paragraph>List of comments:</Typography>
 
-          <Typography paragraph>Great project guys!</Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
+          <Comment />
         </CardContent>
       </Collapse>
     </Card>

@@ -39,6 +39,8 @@ const Starter = () => {
         })
         .catch((err) => console.log("Error:\n", err));
     }
+
+    // return <p>loading..</p>;
   });
 
   useEffect(() => {
@@ -49,7 +51,7 @@ const Starter = () => {
 
   return (
     <div className="Starter-wrapper">
-      <h1>Hey!</h1>
+      <h1>Hey !</h1>
       <span>Start with what you want to be called</span>
       <br />
       <Formik

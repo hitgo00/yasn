@@ -18,7 +18,7 @@ function App() {
       <header className="App-header">
         {/* <PrimarySearchAppBar />
          */}
-        {/* <NavBar /> */}
+
         <NavAppBar />
 
         <StoreProvider store={store}>
