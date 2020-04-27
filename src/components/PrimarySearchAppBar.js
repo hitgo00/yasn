@@ -139,7 +139,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <Link to="/chat">
-        <MenuItem>
+        <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={3} color="secondary">
               <MailIcon />

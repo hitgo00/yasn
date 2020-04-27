@@ -1,7 +1,10 @@
 import React from "react";
 // import logo from "./logo.svg";
 import "./App.css";
-import PrimarySearchAppBar from "./components/PrimarySearchAppBar";
+// import PrimarySearchAppBar from "./components/PrimarySearchAppBar";
+
+import NavAppBar from "./components/NavAppBar";
+
 import { Router } from "@reach/router";
 import HomePage from "./HomePage";
 import { StoreProvider } from "easy-peasy";
@@ -13,7 +16,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <PrimarySearchAppBar />
+        {/* <PrimarySearchAppBar />
+         */}
+        {/* <NavBar /> */}
+        <NavAppBar />
 
         <StoreProvider store={store}>
           <Router>
