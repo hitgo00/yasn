@@ -29,6 +29,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import CreateIcon from "@material-ui/icons/Create";
 import GestureIcon from "@material-ui/icons/Gesture";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import { useTheme } from "@material-ui/core/styles";
 
@@ -41,7 +42,7 @@ const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    marginBottom: 70,
+    marginBottom: "4rem",
   },
 
   title: {
@@ -208,16 +209,25 @@ export default function NavAppBar(props) {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
+
+      <Link to="/profile">
+        <MenuItem onClick={handleMobileMenuClose}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>@hitgo</p>
+        </MenuItem>
+      </Link>
+      <MenuItem onClick={handleMobileMenuClose}>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+          <ExitToAppIcon />
         </IconButton>
-        <p>@hitgo</p>
+        <p>Log Out</p>
       </MenuItem>
     </Menu>
   );
@@ -284,7 +294,7 @@ export default function NavAppBar(props) {
               <MenuIcon />
             </IconButton>
             <Link to="/">
-              <IconButton>
+              <IconButton edge="start">
                 <DonutSmallIcon />
               </IconButton>
             </Link>
@@ -379,9 +389,10 @@ export default function NavAppBar(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
+      {/* <main className={classes.content}>
+        hello
         <div className={classes.toolbar} />
-      </main>
+      </main> */}
     </div>
   );
 }

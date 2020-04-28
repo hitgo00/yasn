@@ -9,6 +9,8 @@ import { Router } from "@reach/router";
 import HomePage from "./HomePage";
 import { StoreProvider } from "easy-peasy";
 
+import ProfilePage from "./ProfilePage";
+
 import ChatApp from "./ChatApp";
 import { store } from "./store";
 
@@ -25,6 +27,7 @@ function App() {
           <Router>
             <HomePage path="/" />
             <ChatApp path="/chat" />
+            <ProfilePage path="/profile" />
           </Router>
         </StoreProvider>
       </header>

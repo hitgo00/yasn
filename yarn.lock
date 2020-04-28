@@ -1247,6 +1247,23 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@mui-treasury/styles@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@mui-treasury/styles/-/styles-1.1.1.tgz#07b378ab5dd9f1b08179f497c1f86a5cdf4b4bb4"
+  integrity sha512-VQf1wAWTFsro8Jq+bPrZCVo/QbK9aWL/4dmUs83CLFmEEVTye69pJNGVt4SbMNAZuojlHQH3fibLVHCnU6PqJA==
+  dependencies:
+    "@mui-treasury/utils" "^0.4.0"
+    color "^3.1.2"
+
+"@mui-treasury/utils@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@mui-treasury/utils/-/utils-0.4.0.tgz#3853f2c94ddffc1edd4d30e17e84b3f8c5fa7f55"
+  integrity sha512-oGg+g488k6+Ul5FMFEq8kmxj2Y3Q9nADdONePhen2iQ7jKEjtlOaxqFqO84mA8eT1zyKUY/8e7Se7K9iRYvIgw==
+  dependencies:
+    clsx "^1.0.4"
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
+
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
@@ -3059,7 +3076,7 @@ color-string@^1.5.2:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.0.0:
+color@^3.0.0, color@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
   integrity sha512-vXTJhHebByxZn3lDvDJYw4lR5+uB3vuoHsuYA5AKuxRVn5wzzIfQKGLBmgdVRHKTJYeK5rvJcHnrd0Li49CFpg==
@@ -6926,6 +6943,16 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
