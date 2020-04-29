@@ -8,14 +8,18 @@ import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 // import { useFadedShadowStyles } from "@mui-treasury/styles/shadow/faded";
 // import { useGutterBorderedGridStyles } from "@mui-treasury/styles/grid/gutterBordered";
-
+import InstagramIcon from "@material-ui/icons/Instagram";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import EditIcon from "@material-ui/icons/Edit";
 const useStyles = makeStyles(() => ({
   card: {
     // position: "absolute",
     marginTop: "0.5rem",
     marginLeft: "1rem",
     marginRight: "1rem",
-    padding: "3.5rem",
+    paddingLeft: "3.5rem",
+    paddingRight: "3.5rem",
     borderRadius: 12,
     maxWidth: 345,
     Width: "auto",
@@ -63,7 +67,22 @@ const ProfileCard = () => {
       <CardContent>
         <Avatar className={styles.avatar} src={"https://i.pravatar.cc/300"} />
         <h3 className={styles.heading}>Alan Podemski</h3>
-        <span className={styles.subheader}>Poland</span>
+        <span className={styles.subheader}>
+          201801052 <br /> BIO
+        </span>
+        <Box display={"flex"}>
+          <Box flex={"auto"} p={2}>
+            <InstagramIcon />
+          </Box>
+          <Box flex={"auto"} p={2}>
+            <GitHubIcon />
+          </Box>
+          <Box flex={"auto"} p={2}>
+            <LinkedInIcon />
+          </Box>
+        </Box>
+
+        <EditIcon fontSize="small" />
       </CardContent>
       <Divider light />
       <Box display={"flex"}>
@@ -72,16 +91,20 @@ const ProfileCard = () => {
           flex={"auto"}
           // className={borderedGridStyles.item}
         >
-          <p className={styles.statLabel}>Followers</p>
-          <p className={styles.statValue}>6941</p>
+          <p className={styles.statLabel}>Posts</p>
+          <p className={styles.statValue}>2</p>
         </Box>
-        <Box
+        {/* <Box
           p={2}
           flex={"auto"}
           // className={borderedGridStyles.item}
         >
           <p className={styles.statLabel}>Following</p>
           <p className={styles.statValue}>12</p>
+        </Box> */}
+        <Box p={2} flex={"auto"}>
+          <p className={styles.statLabel}>Clubs/Comm</p>
+          <p className={styles.statValue}>7</p>
         </Box>
       </Box>
     </Card>

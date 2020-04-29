@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+// import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 // import PropTypes from "prop-types";
 
@@ -30,6 +30,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import CreateIcon from "@material-ui/icons/Create";
 import GestureIcon from "@material-ui/icons/Gesture";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
 import { useTheme } from "@material-ui/core/styles";
 
@@ -194,7 +195,7 @@ export default function NavAppBar(props) {
       <Link to="/chat">
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={3} color="secondary">
+            <Badge badgeContent={"ßeta"} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -203,11 +204,11 @@ export default function NavAppBar(props) {
       </Link>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+          {/* <Badge badgeContent={11} color="secondary"> */}
+          <PostAddIcon />
+          {/* </Badge> */}
         </IconButton>
-        <p>Notifications</p>
+        <p>Add Post</p>
       </MenuItem>
 
       <Link to="/profile">
@@ -318,7 +319,7 @@ export default function NavAppBar(props) {
             <div className={classes.sectionDesktop}>
               <Link to="/chat">
                 <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={4} color="secondary">
+                  <Badge badgeContent={"ßeta"} color="secondary">
                     <MailIcon />
                   </Badge>
                 </IconButton>
@@ -327,9 +328,9 @@ export default function NavAppBar(props) {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
+                {/* <Badge badgeContent={17} color="secondary"> */}
+                <PostAddIcon />
+                {/* </Badge> */}
               </IconButton>
               <IconButton
                 edge="end"

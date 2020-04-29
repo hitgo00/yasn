@@ -15,6 +15,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import CommentIcon from "@material-ui/icons/Comment";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import ToggleButton from "@material-ui/lab/ToggleButton";
 
 import AddComment from "./AddComment";
 import Comment from "./Comment";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PostCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [selected, setSelected] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -79,8 +81,18 @@ export default function PostCard() {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <ToggleButton
+            value="like"
+            selected={selected}
+            onChange={() => {
+              setSelected(!selected);
+            }}
+          >
+            <FavoriteIcon />
+          </ToggleButton>
+          {/* <Typography> 22</Typography> */}
         </IconButton>
+
         <IconButton aria-label="share">
           <CommentIcon />
         </IconButton>
