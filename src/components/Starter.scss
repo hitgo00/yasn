@@ -1,6 +1,6 @@
 .Starter-wrapper {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   text-align: center;
   min-height: 100vh;
   display: flex;
@@ -11,5 +11,12 @@
 
   input {
     width: 200px;
+  }
+  a {
+    color: white;
+  }
+  .title {
+    font-size: 2em;
+    font-weight: bold;
   }
 }

@@ -51,9 +51,25 @@ const Starter = () => {
 
   return (
     <div className="Starter-wrapper">
-      <h1>Hey !</h1>
+      <div>
+        <span className="title">ChatApp </span> <br />
+        <sub>
+          powered by{" "}
+          <a
+            target="_blank"
+            href="https://github.com/darkraichat"
+            rel="noopener noreferrer"
+          >
+            Darkrai
+          </a>
+        </sub>
+      </div>
+      <br />
+      <br />
+      <h2>Hey !</h2>
       <span>Start with what you want to be called</span>
       <br />
+
       <Formik
         onSubmit={async (values) => {
           login(values.name);

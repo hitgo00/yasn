@@ -10,6 +10,7 @@ import HomePage from "./HomePage";
 import { StoreProvider } from "easy-peasy";
 
 import ProfilePage from "./ProfilePage";
+import AddPostPage from "./AddPostPage";
 
 import ChatApp from "./ChatApp";
 import { store } from "./store";
@@ -28,6 +29,7 @@ function App() {
             <HomePage path="/" />
             <ChatApp path="/chat" />
             <ProfilePage path="/profile" />
+            <AddPostPage path="/add" />
           </Router>
         </StoreProvider>
       </header>

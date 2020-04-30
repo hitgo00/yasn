@@ -202,14 +202,16 @@ export default function NavAppBar(props) {
           <p>Messages</p>
         </MenuItem>
       </Link>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          {/* <Badge badgeContent={11} color="secondary"> */}
-          <PostAddIcon />
-          {/* </Badge> */}
-        </IconButton>
-        <p>Add Post</p>
-      </MenuItem>
+      <Link to="/add">
+        <MenuItem>
+          <IconButton aria-label="show 11 new notifications" color="inherit">
+            {/* <Badge badgeContent={11} color="secondary"> */}
+            <PostAddIcon />
+            {/* </Badge> */}
+          </IconButton>
+          <p>Add Post</p>
+        </MenuItem>
+      </Link>
 
       <Link to="/profile">
         <MenuItem onClick={handleMobileMenuClose}>
@@ -324,14 +326,16 @@ export default function NavAppBar(props) {
                   </Badge>
                 </IconButton>
               </Link>
-              <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                {/* <Badge badgeContent={17} color="secondary"> */}
-                <PostAddIcon />
-                {/* </Badge> */}
-              </IconButton>
+              <Link to="/add">
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  {/* <Badge badgeContent={17} color="secondary"> */}
+                  <PostAddIcon />
+                  {/* </Badge> */}
+                </IconButton>
+              </Link>
               <IconButton
                 edge="end"
                 aria-label="account of current user"

@@ -69,30 +69,38 @@ export default function PostCard() {
         title="Project AcadVault"
         subheader="April 14, 2020"
       />
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
-        image="https://picsum.photos/seed/picsum/200/"
+        image="https://picsum.photos/seed/picsum/200/400"
         title="AcadVault"
-      />
+      /> */}
+      <video width="300" controls>
+        <source
+          type="video/mp4"
+          data-reactid=".0.1.0.0.0"
+          // src="https://res.cloudinary.com/hitgo/video/upload/q_auto/v1588194153/daconnect/ittpotar2fadsykerx4q"
+          src="https://res.cloudinary.com/hitgo/video/upload/q_auto/v1588194153/samples/sea-turtle.mp4"
+        ></source>
+      </video>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           A living open-source repository of academic resources!
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <ToggleButton
-            value="like"
-            selected={selected}
-            onChange={() => {
-              setSelected(!selected);
-            }}
-          >
-            <FavoriteIcon />
-          </ToggleButton>
-          {/* <Typography> 22</Typography> */}
-        </IconButton>
-
+        {/* <IconButton aria-label="add to favorites"> */}
+        <ToggleButton
+          value="like"
+          selected={selected}
+          onChange={() => {
+            setSelected(!selected);
+          }}
+        >
+          <FavoriteIcon />
+        </ToggleButton>
+        {` `}
+        {/* <Typography> 22</Typography> */}
+        {/* </IconButton> */}
         <IconButton aria-label="share">
           <CommentIcon />
         </IconButton>
