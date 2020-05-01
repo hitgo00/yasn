@@ -95,6 +95,8 @@ const Starter = () => {
           </Form>
         )}
       </Formik>
+      <br />
+      <span>Might take a few seconds...</span>
     </div>
   );
 };

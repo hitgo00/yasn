@@ -149,6 +149,7 @@ const AddPostPage = () => {
         }
       }
     );
+
     const showWidget = () => {
       widget.open();
     };
