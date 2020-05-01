@@ -11,7 +11,9 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import MailIcon from "@material-ui/icons/Mail";
+import CallSplitIcon from "@material-ui/icons/CallSplit";
 // import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 // import PropTypes from "prop-types";
@@ -29,6 +31,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import CreateIcon from "@material-ui/icons/Create";
 import GestureIcon from "@material-ui/icons/Gesture";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 
@@ -203,7 +206,7 @@ export default function NavAppBar(props) {
         </MenuItem>
       </Link>
       <Link to="/add">
-        <MenuItem>
+        <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 11 new notifications" color="inherit">
             {/* <Badge badgeContent={11} color="secondary"> */}
             <PostAddIcon />
@@ -266,16 +269,24 @@ export default function NavAppBar(props) {
         ))}
       </List>
       <Divider />
+
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Music", "Dance", "Other"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index === 0 ? (
+                <MusicNoteIcon />
+              ) : index === 1 ? (
+                <DirectionsWalkIcon />
+              ) : (
+                <CallSplitIcon />
+              )}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      <Divider />
     </div>
   );
 

@@ -13,7 +13,7 @@ export default function Upload(props) {
       clientAllowedFormats: ["png", "jpeg", "gif", "mp4", "mov", "heic"],
       maxFileSize: 7000000,
       maxImageFileSize: 3500000,
-      maxVideoFileSize: 30000000,
+      maxVideoFileSize: 40000000,
       maxImageWidth: 2000,
       maxImageHeight: 2000,
       sources: ["local", "instagram", "facebook"],

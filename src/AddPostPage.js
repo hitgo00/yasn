@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import UploadImage from "./components/UploadImage";
 
@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 
 import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
 
 import IconButton from "@material-ui/core/IconButton";
 import SendIcon from "@material-ui/icons/Send";
@@ -22,7 +23,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-import Upload from "./components/Upload";
+// import Upload from "./components/Upload";
 
 import { Image, Transformation } from "cloudinary-react";
 
@@ -52,6 +53,10 @@ const useStyles = makeStyles(() => ({
     marginTop: 4,
     marginBottom: 7,
   },
+  input: {
+    marginTop: 4,
+    marginBottom: 4,
+  },
   subheader: {
     fontSize: 14,
     color: "black",
@@ -78,7 +83,94 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AddPostPage = () => {
+  const [Media, SetMedia] = useState("upload");
+  const [ImageUrl, SetImageUrl] = useState("");
+  const [VideoUrl, SetVideoUrl] = useState("");
+
   const styles = useStyles();
+
+  const Video = (props) => {
+    return (
+      <video width="200" controls>
+        <source
+          type="video/mp4"
+          data-reactid=".0.1.0.0.0"
+          src={
+            "https://res.cloudinary.com/hitgo/video/upload/v1588194153/" +
+            props.videoUrl
+          }
+        ></source>
+      </video>
+    );
+  };
+
+  const UImage = (props) => {
+    console.log(props.ImageUrl);
+    return (
+      <CardMedia
+        className={styles.media}
+        image={
+          "https://res.cloudinary.com/hitgo/image/upload/c_crop,g_custom/v1/" +
+          props.ImageUrl
+        }
+        title="AcadVault"
+      />
+    );
+  };
+
+  function Upload(props) {
+    let widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "hitgo",
+        uploadPreset: "fmysidde",
+        multiple: false,
+        cropping: true,
+        showSkipCropButton: false,
+        croppingAspectRatio: 1,
+        folder: "daconnect",
+        clientAllowedFormats: ["png", "jpeg", "mp4", "mov", "heic"],
+        maxFileSize: 7000000,
+        maxImageFileSize: 3500000,
+        maxVideoFileSize: 40000000,
+        maxImageWidth: 2000,
+        maxImageHeight: 2000,
+        sources: ["local", "instagram", "facebook"],
+      },
+      (err, res) => {
+        if (err) console.log(err);
+        if (res.event === "success") {
+          if (res.info.resource_type === "image") {
+            SetImageUrl(res.info.public_id);
+            SetMedia("image");
+          } else {
+            SetVideoUrl(res.info.public_id);
+            SetMedia("video");
+          }
+        }
+      }
+    );
+    const showWidget = () => {
+      widget.open();
+    };
+
+    return (
+      <div>
+        <button onClick={showWidget}>
+          {props.element} <br />
+          {props.text}
+        </button>
+      </div>
+    );
+  }
+
+  const AddPostMedia = () => {
+    if (Media === "image") return <UImage ImageUrl={ImageUrl} />;
+    else if (Media === "video") return <Video videoUrl={VideoUrl} />;
+    else
+      return (
+        <Upload element={<AddPhotoAlternateIcon />} text="Upload Image/Video" />
+      );
+  };
 
   return (
     <div>
@@ -86,67 +178,60 @@ const AddPostPage = () => {
         <CardContent>
           <h6 className={styles.heading}>Add a Post </h6>
           <Divider light />
-
-          {/* <CardMedia
-            className={styles.media}
-            image="https://res.cloudinary.com/hitgo/image/upload/c_crop,g_custom/v1/daconnect/bdplmkbf1zlzhm96scda"
-            title="AcadVault"
-            
-          /> */}
-          {/* <video width="200" controls>
-            <source
-              type="video/mp4"
-              data-reactid=".0.1.0.0.0"
-              src="https://res.cloudinary.com/hitgo/video/upload/v1588194153/daconnect/ittpotar2fadsykerx4q"
-            ></source>
-          </video> */}
-          <Upload
-            element={<AddPhotoAlternateIcon />}
-            text="Upload Image/Video"
-          />
+          <AddPostMedia />
 
           <Divider light />
+
           <FormControl fullWidth>
-            <InputLabel htmlFor="standard-adornment-amount">Caption</InputLabel>
-            <Input
-              id="standard-adornment-amount"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton aria-label="send" size="medium">
-                    <SendIcon />
-                  </IconButton>
-                </InputAdornment>
-              }
+            <TextField
+              className={styles.input}
+              id="standard-filled"
+              label="Title"
+              variant="filled"
             />
+
+            <TextField
+              className={styles.input}
+              id="outlined-multiline-static"
+              label="Description"
+              multiline
+              rows={2}
+              defaultValue=""
+              variant="outlined"
+            />
+            <Divider light />
+
+            <Box display={"flex"}>
+              <Autocomplete
+                className={styles.input}
+                fullWidth
+                multiple
+                limitTags={1}
+                id="multiple-limit-tags"
+                options={tags}
+                getOptionLabel={(option) => option}
+                // defaultValue={[tags[3]]}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="Tags"
+                    placeholder="AddTags"
+                  />
+                )}
+              />
+            </Box>
+            <Button variant="contained" color="primary">
+              Post
+            </Button>
           </FormControl>
         </CardContent>
         <Divider light />
-
-        <Box display={"flex"}>
-          <Autocomplete
-            fullWidth
-            multiple
-            limitTags={1}
-            id="multiple-limit-tags"
-            options={tags}
-            getOptionLabel={(option) => option}
-            defaultValue={[tags[3]]}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="outlined"
-                label="Tags"
-                placeholder="AddTags"
-              />
-            )}
-          />
-        </Box>
-        <br />
       </Card>
     </div>
   );
 };
 
-const tags = ["Project", "Artwork", "Writings", "Other"];
+const tags = ["Project", "Artwork", "Writings", "Music", "Dance", "Other"];
 
 export default AddPostPage;
