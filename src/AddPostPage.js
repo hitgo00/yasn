@@ -25,8 +25,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 // import Upload from "./components/Upload";
 
-import { Image, Transformation } from "cloudinary-react";
-
+import { CloudName, UploadPreset } from "./constants";
 const useStyles = makeStyles(() => ({
   card: {
     // position: "absolute",
@@ -96,7 +95,7 @@ const AddPostPage = () => {
           type="video/mp4"
           data-reactid=".0.1.0.0.0"
           src={
-            "https://res.cloudinary.com/hitgo/video/upload/v1588194153/" +
+            `https://res.cloudinary.com/${CloudName}/video/upload/v1588194153/` +
             props.videoUrl
           }
         ></source>
@@ -110,7 +109,7 @@ const AddPostPage = () => {
       <CardMedia
         className={styles.media}
         image={
-          "https://res.cloudinary.com/hitgo/image/upload/c_crop,g_custom/v1/" +
+          `https://res.cloudinary.com/${CloudName}image/upload/c_crop,g_custom/v1/` +
           props.ImageUrl
         }
         title="AcadVault"
@@ -121,8 +120,8 @@ const AddPostPage = () => {
   function Upload(props) {
     let widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "hitgo",
-        uploadPreset: "fmysidde",
+        cloudName: CloudName,
+        uploadPreset: UploadPreset,
         multiple: false,
         cropping: true,
         showSkipCropButton: false,

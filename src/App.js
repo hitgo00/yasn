@@ -11,6 +11,7 @@ import { StoreProvider } from "easy-peasy";
 
 import ProfilePage from "./ProfilePage";
 import AddPostPage from "./AddPostPage";
+import SignIn from "./SignIn";
 
 import ChatApp from "./ChatApp";
 import { store } from "./store";
@@ -30,6 +31,7 @@ function App() {
             <ChatApp path="/chat" />
             <ProfilePage path="/profile" />
             <AddPostPage path="/add" />
+            <SignIn path="/signin" />
           </Router>
         </StoreProvider>
       </header>
