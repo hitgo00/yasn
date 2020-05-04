@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import GoogleLogin from "react-google-login";
 
 import { ConnectServerUrl } from "./constants";
@@ -18,6 +18,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import GoogleButton from "react-google-button";
+
+import GsignIn from "./GsignIn";
 
 import "./common.scss";
 
@@ -93,10 +95,6 @@ export default function SignIn() {
   const classes = useStyles();
   console.log(sessionStorage);
 
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
-
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -123,23 +121,28 @@ export default function SignIn() {
             <i>It's exclusive!</i>
           </Typography>
           <br />
-          {/* <GoogleLogin
-            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          /> */}
 
-          <a href={`${ConnectServerUrl}/auth/google`}>
-            <GoogleButton
-              type="dark"
-              className={classes.submit}
-              onClick={() => {
-                console.log("Google button clicked");
-              }}
-            />
-          </a>
+          {/* <a href={`${ConnectServerUrl}/auth/google`}> */}
+          <GsignIn
+            element={
+              <GoogleButton
+                type="dark"
+                className={classes.submit}
+                onClick={() => {
+                  console.log("Google button clicked");
+                }}
+              />
+            }
+          />
+          {/* <GoogleButton
+            ref="googleLoginBtn"
+            type="dark"
+            className={classes.submit}
+            onClick={() => {
+              console.log("Google button clicked");
+            }}
+          /> */}
+          {/* </a> */}
           <br />
           <Typography component="h5" variant="h6">
             <i>using @daiict.ac.in email.</i>
