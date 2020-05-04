@@ -1,4 +1,5 @@
 import React from "react";
+import GoogleLogin from "react-google-login";
 
 import { ConnectServerUrl } from "./constants";
 
@@ -60,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
   },
   paper: {
+    marginTop: "8em",
     color: "white",
     margin: theme.spacing(8, 4),
     display: "flex",
@@ -91,6 +93,10 @@ export default function SignIn() {
   const classes = useStyles();
   console.log(sessionStorage);
 
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -116,8 +122,14 @@ export default function SignIn() {
           <Typography component="h3" variant="h6">
             <i>It's exclusive!</i>
           </Typography>
-
           <br />
+          {/* <GoogleLogin
+            clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          /> */}
 
           <a href={`${ConnectServerUrl}/auth/google`}>
             <GoogleButton
@@ -132,12 +144,10 @@ export default function SignIn() {
           <Typography component="h5" variant="h6">
             <i>using @daiict.ac.in email.</i>
           </Typography>
-
           {/* <Typography component="h1" variant="h6">
             It's an exclusive Social Network for DA, you can login only with
             @daiict.ac.in email address
           </Typography> */}
-
           <Box mt={5} className={classes.copyright}>
             <Copyright />
           </Box>
