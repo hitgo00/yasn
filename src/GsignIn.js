@@ -37,7 +37,8 @@ export default function GsignIn(props) {
     window["googleSDKLoaded"] = () => {
       window["gapi"].load("auth2", () => {
         auth2 = window["gapi"].auth2.init({
-          client_id: GoogleClientId,
+          client_id:
+            "203079620951-q6ndi6cn9ng4b55jo8rr1icdonkd05b2.apps.googleusercontent.com",
           hosted_domain: "daiict.ac.in",
           cookiepolicy: "single_host_origin",
           prompt: "select_account",
