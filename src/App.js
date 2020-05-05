@@ -23,17 +23,17 @@ function App() {
         {/* <PrimarySearchAppBar />
          */}
 
-        <NavAppBar />
-
-        <StoreProvider store={store}>
-          <Router>
-            <HomePage path="/" />
-            <ChatApp path="/chat" />
-            <ProfilePage path="/profile" />
-            <AddPostPage path="/add" />
-            <SignIn path="/signin" />
-          </Router>
-        </StoreProvider>
+        <NavAppBar>
+          <StoreProvider store={store}>
+            <Router>
+              <HomePage path="/" />
+              <ChatApp path="/chat" />
+              <ProfilePage path="/profile" />
+              <AddPostPage path="/add" />
+              <SignIn path="/signin" />
+            </Router>
+          </StoreProvider>
+        </NavAppBar>
       </header>
     </div>
   );

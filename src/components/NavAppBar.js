@@ -408,10 +408,11 @@ export default function NavAppBar(props) {
           </Drawer>
         </Hidden>
       </nav>
-      {/* <main className={classes.content}>
+      <main className={classes.content}>
         hello
-        <div className={classes.toolbar} />
-      </main> */}
+        {props.children}
+        {/* <div className={classes.toolbar} /> */}
+      </main>
     </div>
   );
 }

@@ -2,7 +2,11 @@ import React, { useRef, useEffect } from "react";
 
 import { GoogleClientId } from "./constants";
 
+import { useCookies, withCookies } from "react-cookie";
+
 export default function GsignIn(props) {
+  const [cookies, setCookie] = useCookies([""]);
+
   let auth2;
   const googleLoginBtn = useRef(null);
 
@@ -26,9 +30,19 @@ export default function GsignIn(props) {
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
         //YOUR CODE HERE
+
+        let AuthCookie = {
+          Token: googleUser.getAuthResponse().id_token,
+          ID: profile.getId(),
+          Name: profile.getName(),
+          Email: profile.getEmail(),
+        };
+
+        setCookie("userCookie", AuthCookie, { path: "/" });
+        window.location.reload();
       },
       (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+        alert(JSON.stringify(error.reason, undefined, 2));
       }
     );
   };

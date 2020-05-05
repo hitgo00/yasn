@@ -1,20 +1,46 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import Loader from "./components/Loader";
+import { CookiesProvider, Cookies } from "react-cookie";
 
 const AuthenticatedApp = lazy(() => import("./App"));
 const UnauthenticatedApp = lazy(() => import("./SignIn"));
+const cookies = new Cookies();
+
+console.log(cookies.get("userCookie"));
 
 const Connect = () => {
-  const user = true;
+  const userCookie = cookies.get("userCookie");
+  const [emailDomain, setEmailDomain] = useState(
+    userCookie ? userCookie.Email.split("@")[1] : ""
+  );
+
+  const [user, setUser] = useState(false);
+  //    emailDomain === "daiict.ac.in" ? true : false
+  //  );
+  useEffect(() => {
+    if (emailDomain === "daiict.ac.in") setUser(true);
+  }, [cookies]);
+
+  // if (userCookie) {
+  //   setEmailDomain(userCookie.Email.split("@")[1]);
+  //
+  // }
+  // let user = false;
+  // if (emailDomain === "daiict.ac.in") {
+  //   setUser(true);
+  // }
   return (
-    <Suspense fallback={<Loader />}>
-      <React.StrictMode>
-        {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-      </React.StrictMode>
-    </Suspense>
+    <CookiesProvider>
+      <Suspense fallback={<Loader />}>
+        <React.StrictMode>
+          {/* {console.log(Cookies.get("userCookie"))} */}
+          {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+        </React.StrictMode>
+      </Suspense>
+    </CookiesProvider>
   );
 };
 
