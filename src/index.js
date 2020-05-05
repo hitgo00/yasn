@@ -1,21 +1,32 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import "./index.css";
+import Loader from "./components/Loader";
 
-import SignIn from "./SignIn";
-import GsignIn from "./GsignIn";
+const AuthenticatedApp = lazy(() => import("./App"));
+const UnauthenticatedApp = lazy(() => import("./SignIn"));
 
-ReactDOM.render(
-  <React.StrictMode>
-    {/* <App /> */}
-    <SignIn />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const Connect = () => {
+  const user = true;
+  return (
+    <Suspense fallback={<Loader />}>
+      <React.StrictMode>
+        {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </React.StrictMode>
+    </Suspense>
+  );
+};
 
-// ReactDOM.render(<SignIn />, document.getElementById("root"));
+// ReactDOM.render(
+//   <React.StrictMode>
+//     {/* <App /> */}
+//     <SignIn />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
+
+ReactDOM.render(<Connect />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
