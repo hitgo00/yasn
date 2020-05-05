@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link: {
-    color: "black",
+    color: "#292a36",
   },
   menuButton: {
     marginRight: theme.spacing(2),

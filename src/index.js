@@ -9,8 +9,8 @@ import GsignIn from "./GsignIn";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    {/* <SignIn /> */}
+    {/* <App /> */}
+    <SignIn />
   </React.StrictMode>,
   document.getElementById("root")
 );
