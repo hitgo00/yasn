@@ -120,6 +120,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  link: {
+    color: "black",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
@@ -195,7 +198,7 @@ export default function NavAppBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link to="/chat">
+      <Link to="/chat" className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={"ßeta"} color="secondary">
@@ -205,7 +208,7 @@ export default function NavAppBar(props) {
           <p>Messages</p>
         </MenuItem>
       </Link>
-      <Link to="/add">
+      <Link to="/add" className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 11 new notifications" color="inherit">
             {/* <Badge badgeContent={11} color="secondary"> */}
@@ -216,7 +219,7 @@ export default function NavAppBar(props) {
         </MenuItem>
       </Link>
 
-      <Link to="/profile">
+      <Link to="/profile" className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton
             aria-label="account of current user"

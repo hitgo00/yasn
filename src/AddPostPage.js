@@ -107,7 +107,7 @@ const AddPostPage = () => {
       <CardMedia
         className={styles.media}
         image={
-          `https://res.cloudinary.com/${CloudName}image/upload/c_crop,g_custom/v1/` +
+          `https://res.cloudinary.com/${CloudName}/image/upload/c_crop,g_custom/v1/` +
           props.ImageUrl
         }
         title="AcadVault"
