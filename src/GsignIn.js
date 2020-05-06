@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from "react";
-
 import { GoogleClientId } from "./constants";
-
 import { useCookies, withCookies } from "react-cookie";
 
 export default function GsignIn(props) {
@@ -29,7 +27,6 @@ export default function GsignIn(props) {
         console.log("Name: " + profile.getName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-        //YOUR CODE HERE
 
         let AuthCookie = {
           Token: googleUser.getAuthResponse().id_token,

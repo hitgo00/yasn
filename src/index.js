@@ -18,25 +18,15 @@ const Connect = () => {
   );
 
   const [user, setUser] = useState(false);
-  //    emailDomain === "daiict.ac.in" ? true : false
-  //  );
+
   useEffect(() => {
     if (emailDomain === "daiict.ac.in") setUser(true);
   }, [cookies]);
 
-  // if (userCookie) {
-  //   setEmailDomain(userCookie.Email.split("@")[1]);
-  //
-  // }
-  // let user = false;
-  // if (emailDomain === "daiict.ac.in") {
-  //   setUser(true);
-  // }
   return (
     <CookiesProvider>
       <Suspense fallback={<Loader />}>
         <React.StrictMode>
-          {/* {console.log(Cookies.get("userCookie"))} */}
           {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
         </React.StrictMode>
       </Suspense>

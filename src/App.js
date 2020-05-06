@@ -12,6 +12,7 @@ import { StoreProvider } from "easy-peasy";
 import ProfilePage from "./ProfilePage";
 import AddPostPage from "./AddPostPage";
 import SignIn from "./SignIn";
+import AddProfile from "./AddProfile";
 
 import ChatApp from "./ChatApp";
 import { store } from "./store";
@@ -20,8 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <PrimarySearchAppBar />
-         */}
+        <AddProfile path="/addprofile" />
 
         <NavAppBar>
           <StoreProvider store={store}>

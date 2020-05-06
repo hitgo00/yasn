@@ -41,6 +41,10 @@ import DonutSmallIcon from "@material-ui/icons/DonutSmall";
 
 import { Link } from "@reach/router";
 
+import { Cookies } from "react-cookie";
+
+const cookies = new Cookies();
+
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -135,6 +139,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
+    marginTop: "2em",
     flexGrow: 1,
     padding: theme.spacing(3),
   },
@@ -169,6 +174,12 @@ export default function NavAppBar(props) {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleLogOut = () => {
+    setMobileMoreAnchorEl(null);
+    cookies.remove("userCookie");
+    window.location.reload();
   };
 
   const menuId = "primary-search-account-menu";
@@ -232,7 +243,7 @@ export default function NavAppBar(props) {
           <p>@hitgo</p>
         </MenuItem>
       </Link>
-      <MenuItem onClick={handleMobileMenuClose}>
+      <MenuItem onClick={handleLogOut}>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <ExitToAppIcon />
         </IconButton>
@@ -409,7 +420,6 @@ export default function NavAppBar(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        hello
         {props.children}
         {/* <div className={classes.toolbar} /> */}
       </main>

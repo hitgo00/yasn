@@ -29,7 +29,9 @@ export default function Loader() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress variant="determinate" value={progress} />
+      <CircularProgress
+      // variant="determinate" value={progress}
+      />
     </div>
   );
 }
