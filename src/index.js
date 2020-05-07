@@ -5,6 +5,8 @@ import "./index.css";
 import Loader from "./components/Loader";
 import { CookiesProvider, Cookies } from "react-cookie";
 
+import ProfileContext from "./components/ProfileContext";
+
 const AuthenticatedApp = lazy(() => import("./App"));
 const UnauthenticatedApp = lazy(() => import("./SignIn"));
 const cookies = new Cookies();
@@ -12,6 +14,8 @@ const cookies = new Cookies();
 console.log(cookies.get("userCookie"));
 
 const Connect = () => {
+  const profileHook = useState(true);
+
   const userCookie = cookies.get("userCookie");
   const [emailDomain, setEmailDomain] = useState(
     userCookie ? userCookie.Email.split("@")[1] : ""
@@ -25,11 +29,13 @@ const Connect = () => {
 
   return (
     <CookiesProvider>
-      <Suspense fallback={<Loader />}>
-        <React.StrictMode>
-          {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-        </React.StrictMode>
-      </Suspense>
+      <ProfileContext.Provider value={profileHook}>
+        <Suspense fallback={<Loader />}>
+          <React.StrictMode>
+            {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+          </React.StrictMode>
+        </Suspense>
+      </ProfileContext.Provider>
     </CookiesProvider>
   );
 };
