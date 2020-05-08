@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router, Redirect, Link } from "@reach/router";
 import { Formik } from "formik";
 import axios from "axios";
-import { ConnectServerUrl } from "./constants";
+
 import queryString from "query-string";
 
 import { makeStyles } from "@material-ui/styles";
@@ -30,7 +30,7 @@ import { Cookies } from "react-cookie";
 
 // import Upload from "./components/Upload";
 
-import { CloudName, UploadPreset } from "./constants";
+import { CloudName, UploadPreset, ConnectServerUrl } from "./constants";
 
 const cookies = new Cookies();
 const email = cookies.get("userCookie").Email;
@@ -199,7 +199,7 @@ const AddPostPage = () => {
       {postSuccess ? (
         <div className={styles.root}>
           <Link to="/">
-            <Typography>Post added successfully!</Typography>
+            <Typography>Post added successfully! 🔥</Typography>
             <br />
             <CheckCircleIcon fontSize="large" />
           </Link>

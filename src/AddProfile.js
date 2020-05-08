@@ -98,6 +98,7 @@ export default function AddProfile() {
           linkedin: "",
           instagram: "",
           bio: "",
+          tags: [],
         }}
         validate={(values) => {
           const errors = {};
@@ -117,6 +118,7 @@ export default function AddProfile() {
               gitHubUrl: values.github,
               linkedInUrl: values.linkedin,
               instaUrl: values.instagram,
+              tags: values.tags,
             })
             .then(function (res) {
               console.log(res);
@@ -129,13 +131,6 @@ export default function AddProfile() {
           console.log(JSON.stringify(values));
           //   setSubmitting(false);
         }}
-        // onSubmit={(values, { setSubmitting }) => {
-        //   console.log(values.tags);
-        //   setTimeout(() => {
-        //     alert(JSON.stringify(values, null, 2));
-        //     setSubmitting(false);
-        //   }, 400);
-        // }}
       >
         {({
           values,
@@ -144,6 +139,7 @@ export default function AddProfile() {
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
 
           /* and other goodies */
         }) => (
@@ -184,9 +180,9 @@ export default function AddProfile() {
                 onBlur={handleBlur}
               />
               <Typography style={{ color: "black", marginTop: ".5rem" }}>
-                How many clubs/committees are you associated with?
+                Clubs/Committees
               </Typography>
-              <TextField
+              {/* <TextField
                 style={{ width: "4rem" }}
                 size="small"
                 type="number"
@@ -204,16 +200,13 @@ export default function AddProfile() {
               />
               <Typography style={{ color: "black" }}>
                 {errors.ccn && touched.ccn && errors.ccn}
-              </Typography>
-              <br />
-              {/* <Autocomplete
+              </Typography> */}
+              <Autocomplete
                 className={classes.input}
                 name="tags"
-                value={values.tags}
                 onChange={(event, value) => {
-                  console.log(event);
-                  if (value) values.tags.push(value);
                   console.log(value);
+                  setFieldValue("tags", value !== null ? value : values.tags);
                 }}
                 onBlur={handleBlur}
                 multiple
@@ -229,13 +222,10 @@ export default function AddProfile() {
                     variant="outlined"
                     label=""
                     placeholder="Add"
-                    // name="tags"
-                    // value={values.tags}
-                    // onChange={handleChange}
-                    // onBlur={handleBlur}
+                    name="tags"
                   />
                 )}
-              /> */}
+              />
               <TextField
                 label="Github profile link"
                 id="filled-size-small"

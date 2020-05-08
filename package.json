@@ -19,6 +19,7 @@
     "clsx": "^1.1.0",
     "easy-peasy": "^3.3.0",
     "formik": "^2.1.4",
+    "moment": "^2.25.3",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
@@ -27,6 +28,8 @@
     "react-frame-component": "^4.1.1",
     "react-google-button": "^0.7.1",
     "react-google-login": "^5.1.10",
+    "react-lazyload": "^2.6.7",
+    "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
     "socket.io-client": "^2.3.0"
   },

@@ -72,13 +72,14 @@ const ProfileCard = (props) => {
           className={styles.avatar}
           //  src={"https://i.pravatar.cc/300"}
         >
-          {name ? name[0] + name.split(" ")[1][0] : "Anonymous"}
+          {name ? name[0] + name.split(" ")[1][0] : "X"}
         </Avatar>
 
         <h3 className={styles.heading}>{name}</h3>
         <span className={styles.subheader}>
           {roll.substring(0, 6)}XXX <br /> {bio}
         </span>
+
         <Box display={"flex"}>
           <Box flex={"auto"} p={2}>
             <a target="_blank" href={instagram}>

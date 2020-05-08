@@ -50,8 +50,10 @@ function App() {
               <StoreProvider store={store}>
                 <Router>
                   <HomePage path="/" />
+                  <HomePage path="/home/:tag" />
                   <ChatApp path="/chat" />
                   <ProfilePage path="/profile" />
+                  <ProfilePage path="/:username" />
                   <AddPostPage path="/add" />
                   <SignIn path="/signin" />
                 </Router>

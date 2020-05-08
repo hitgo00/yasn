@@ -1,4 +1,7 @@
 import React from "react";
+import Moment from "react-moment";
+import { Link } from "@reach/router";
+
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -20,13 +23,19 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
 
+import { CloudName, UploadPreset, ConnectServerUrl } from "../constants";
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 355,
+    Width: "90vw",
     marginTop: 20,
+    // margin: "1rem",
+    align: "center",
   },
   media: {
     height: 0,
+
     paddingTop: "56.25%", // 16:9
   },
   expand: {
@@ -44,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostCard() {
+export default function PostCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [selected, setSelected] = React.useState(false);
@@ -57,34 +66,59 @@ export default function PostCard() {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            H
-          </Avatar>
+          <Link to={`/${props.creator.username}`}>
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              {props.creator
+                ? props.creator.name
+                  ? props.creator.name[0] + props.creator.name.split(" ")[1][0]
+                  : props.Name[0] + props.Name.split(" ")[1][0]
+                : props.Name
+                ? props.Name
+                : "X"}
+            </Avatar>
+          </Link>
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Project AcadVault"
-        subheader="April 14, 2020"
+        title={props.title}
+        subheader={
+          <Moment format="MMM D, YYYY" withTitle>
+            {props.date}
+          </Moment>
+        }
       />
-      {/* <CardMedia
-        className={classes.media}
-        image="https://picsum.photos/seed/picsum/200/400"
-        title="AcadVault"
-      /> */}
-      <video width="300" controls>
-        <source
-          type="video/mp4"
-          data-reactid=".0.1.0.0.0"
-          // src="https://res.cloudinary.com/hitgo/video/upload/q_auto/v1588194153/daconnect/ittpotar2fadsykerx4q"
-          src="https://res.cloudinary.com/hitgo/video/upload/q_auto/v1588194153/samples/sea-turtle.mp4"
-        ></source>
-      </video>
+      {props.imageUrl ? (
+        <>
+          <CardMedia
+            className={classes.media}
+            image={
+              `https://res.cloudinary.com/${CloudName}/image/upload/c_crop,g_custom/v1/` +
+              props.imageUrl
+            }
+            title="AcadVault"
+          />
+        </>
+      ) : (
+        <>
+          <video width="300" height="300" controls>
+            <source
+              type="video/mp4"
+              data-reactid=".0.1.0.0.0"
+              src={
+                `https://res.cloudinary.com/${CloudName}/video/upload/q_auto/v1588194153/` +
+                props.videoUrl
+              }
+            ></source>
+          </video>
+        </>
+      )}
+
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          A living open-source repository of academic resources!
+          {props.description ? props.description : ""}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

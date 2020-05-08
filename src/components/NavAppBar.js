@@ -44,6 +44,7 @@ import { Link } from "@reach/router";
 import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
+const email = cookies.get("userCookie").Email;
 
 const drawerWidth = 200;
 
@@ -230,7 +231,7 @@ export default function NavAppBar(props) {
         </MenuItem>
       </Link>
 
-      <Link to="/profile" className={classes.link}>
+      <Link to={`/profile`} className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton
             aria-label="account of current user"
@@ -240,7 +241,7 @@ export default function NavAppBar(props) {
           >
             <AccountCircle />
           </IconButton>
-          <p>@hitgo</p>
+          <p>Profile</p>
         </MenuItem>
       </Link>
       <MenuItem onClick={handleLogOut}>
@@ -267,38 +268,84 @@ export default function NavAppBar(props) {
 
       <Divider />
       <List>
-        {["Projects", "Writings", "Artwork"].map((text, index) => (
+        {/* {["Projects", "Writings", "Artwork"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index === 0 ? (
-                <GitHubIcon />
+                <Link to="/home/Project">
+                  <GitHubIcon />
+                </Link>
               ) : index === 1 ? (
-                <CreateIcon />
+                <Link to="/home/Writings">
+                  {" "}
+                  <CreateIcon />
+                </Link>
               ) : (
-                <GestureIcon />
+                <Link to="/home/Artwork">
+                  {" "}
+                  <GestureIcon />
+                </Link>
               )}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+        <Link to="/home/Project">
+          <ListItem button key={"Projects"}>
+            <ListItemIcon>
+              <GitHubIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Projects"} />
+          </ListItem>
+        </Link>
+
+        <Link to="/home/Writings">
+          <ListItem button key={"Writings"}>
+            <ListItemIcon>
+              <CreateIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Writings"} />
+          </ListItem>
+        </Link>
+
+        <Link to="/home/Artwork">
+          <ListItem button key={"Artwork"}>
+            <ListItemIcon>
+              <GestureIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Artwork"} />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
 
       <List>
-        {["Music", "Dance", "Other"].map((text, index) => (
-          <ListItem button key={text}>
+        <Link to="/home/Music">
+          <ListItem button key={"Music"}>
             <ListItemIcon>
-              {index === 0 ? (
-                <MusicNoteIcon />
-              ) : index === 1 ? (
-                <DirectionsWalkIcon />
-              ) : (
-                <CallSplitIcon />
-              )}
+              <MusicNoteIcon />
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={"Music"} />
           </ListItem>
-        ))}
+        </Link>
+
+        <Link to="/home/Dance">
+          <ListItem button key={"Dance"}>
+            <ListItemIcon>
+              <DirectionsWalkIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Dance"} />
+          </ListItem>
+        </Link>
+
+        <Link to="/home/Other">
+          <ListItem button key={"Other"}>
+            <ListItemIcon>
+              <CallSplitIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Other"} />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
     </div>
