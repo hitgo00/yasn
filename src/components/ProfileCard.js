@@ -1,6 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/styles";
+import { red } from "@material-ui/core/colors";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -30,6 +31,7 @@ const useStyles = makeStyles(() => ({
     width: 60,
     height: 60,
     margin: "auto",
+    backgroundColor: red[500],
   },
   heading: {
     fontSize: 18,
@@ -59,30 +61,43 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ProfileCard = () => {
+const ProfileCard = (props) => {
   const styles = useStyles();
+  const { name, clubs, roll, bio, posts, github, linkedin, instagram } = props;
 
   return (
     <Card className={styles.card}>
       <CardContent>
-        <Avatar className={styles.avatar} src={"https://i.pravatar.cc/300"} />
-        <h3 className={styles.heading}>Alan Podemski</h3>
+        <Avatar
+          className={styles.avatar}
+          //  src={"https://i.pravatar.cc/300"}
+        >
+          {name ? name[0] + name.split(" ")[1][0] : "Anonymous"}
+        </Avatar>
+
+        <h3 className={styles.heading}>{name}</h3>
         <span className={styles.subheader}>
-          201801052 <br /> BIO
+          {roll.substring(0, 6)}XXX <br /> {bio}
         </span>
         <Box display={"flex"}>
           <Box flex={"auto"} p={2}>
-            <InstagramIcon />
+            <a target="_blank" href={instagram}>
+              <InstagramIcon />
+            </a>
           </Box>
           <Box flex={"auto"} p={2}>
-            <GitHubIcon />
+            <a target="_blank" href={github}>
+              <GitHubIcon />
+            </a>
           </Box>
           <Box flex={"auto"} p={2}>
-            <LinkedInIcon />
+            <a target="_blank" href={linkedin}>
+              <LinkedInIcon style={{ link: { color: "black" } }} />
+            </a>
           </Box>
         </Box>
 
-        <EditIcon fontSize="small" />
+        {/* <EditIcon fontSize="small" /> */}
       </CardContent>
       <Divider light />
       <Box display={"flex"}>
@@ -92,19 +107,12 @@ const ProfileCard = () => {
           // className={borderedGridStyles.item}
         >
           <p className={styles.statLabel}>Posts</p>
-          <p className={styles.statValue}>2</p>
+          <p className={styles.statValue}>{posts ? posts.length : 0}</p>
         </Box>
-        {/* <Box
-          p={2}
-          flex={"auto"}
-          // className={borderedGridStyles.item}
-        >
-          <p className={styles.statLabel}>Following</p>
-          <p className={styles.statValue}>12</p>
-        </Box> */}
+
         <Box p={2} flex={"auto"}>
           <p className={styles.statLabel}>Clubs/Comm</p>
-          <p className={styles.statValue}>7</p>
+          <p className={styles.statValue}>{clubs ? clubs : 0}</p>
         </Box>
       </Box>
     </Card>

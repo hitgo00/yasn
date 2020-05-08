@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import openSocket from "socket.io-client";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
@@ -10,6 +10,7 @@ import "./Starter.scss";
 
 const Starter = () => {
   const url = "Da-Connect";
+  const [loading, setLoading] = useState(false);
   const { setChat, setMessageData, setSocket, setNickname } = useStoreActions(
     (actions) => actions
   );
@@ -72,6 +73,7 @@ const Starter = () => {
 
       <Formik
         onSubmit={async (values) => {
+          setLoading(true);
           login(values.name);
         }}
         initialValues={{ name: "" }}
@@ -96,7 +98,7 @@ const Starter = () => {
         )}
       </Formik>
       <br />
-      <span>Might take a few seconds...</span>
+      {loading ? <span>Might take a few seconds...</span> : null}
     </div>
   );
 };
