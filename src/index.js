@@ -40,14 +40,6 @@ const Connect = () => {
   );
 };
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     {/* <App /> */}
-//     <SignIn />
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
-
 ReactDOM.render(<Connect />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

@@ -194,8 +194,12 @@ export default function NavAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <Link to={`/profile`} className={classes.link}>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
+      <MenuItem onClick={handleMenuClose} onClick={handleLogOut}>
+        Log Out
+      </MenuItem>
     </Menu>
   );
 
@@ -268,28 +272,6 @@ export default function NavAppBar(props) {
 
       <Divider />
       <List>
-        {/* {["Projects", "Writings", "Artwork"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index === 0 ? (
-                <Link to="/home/Project">
-                  <GitHubIcon />
-                </Link>
-              ) : index === 1 ? (
-                <Link to="/home/Writings">
-                  {" "}
-                  <CreateIcon />
-                </Link>
-              ) : (
-                <Link to="/home/Artwork">
-                  {" "}
-                  <GestureIcon />
-                </Link>
-              )}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))} */}
         <Link to="/home/Project">
           <ListItem button key={"Projects"}>
             <ListItemIcon>

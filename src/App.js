@@ -18,7 +18,7 @@ import ChatApp from "./ChatApp";
 import { store } from "./store";
 import { ConnectServerUrl } from "./constants";
 import queryString from "query-string";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import ProfileContext from "./components/ProfileContext";
 
 const cookies = new Cookies();
@@ -36,7 +36,8 @@ function App() {
           queryString.stringify({ email: userEmail }, { withCredentials: true })
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data[0]._id);
+        cookies.set("userId", res.data[0]._id);
         if (!res.data) setProfile(false);
       });
   }, []);
@@ -63,19 +64,6 @@ function App() {
         ) : (
           <AddProfile />
         )}
-        {/* <AddProfile />
-
-        <NavAppBar>
-          <StoreProvider store={store}>
-            <Router>
-              <HomePage path="/" />
-              <ChatApp path="/chat" />
-              <ProfilePage path="/profile" />
-              <AddPostPage path="/add" />
-              <SignIn path="/signin" />
-            </Router>
-          </StoreProvider> */}
-        {/* </NavAppBar> */}
       </header>
     </div>
   );

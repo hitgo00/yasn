@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import { Link } from "@reach/router";
+import axios from "axios";
+import queryString from "query-string";
 
 import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -25,10 +28,15 @@ import Comment from "./Comment";
 
 import { CloudName, UploadPreset, ConnectServerUrl } from "../constants";
 
+import { Cookies } from "react-cookie";
+
+const cookies = new Cookies();
+const email = cookies.get("userCookie").Email;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 355,
-    Width: "90vw",
+    Width: "89vw",
     marginTop: 20,
     // margin: "1rem",
     align: "center",
@@ -55,11 +63,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PostCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [selected, setSelected] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [likeCount, setLikeCount] = useState(props.likes.likers.length);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  useEffect(() => {
+    if (props.likes.likers.find((e) => e === cookies.get("userId")))
+      setSelected(true);
+  }, []);
+  const handleLike = (selected) => {
+    let liked = !selected;
+
+    axios
+      .post(
+        `${ConnectServerUrl}/handlelike?` +
+          queryString.stringify({ _id: props._id }),
+        {
+          currentUserId: cookies.get("userId"),
+          email,
+          liked,
+          //liked is true if user like , false if unliked ;
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -103,7 +134,7 @@ export default function PostCard(props) {
         </>
       ) : (
         <>
-          <video width="300" height="300" controls>
+          <video width="300" height="200" controls>
             <source
               type="video/mp4"
               data-reactid=".0.1.0.0.0"
@@ -122,22 +153,51 @@ export default function PostCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites"> */}
-        <ToggleButton
-          value="like"
-          selected={selected}
-          onChange={() => {
-            setSelected(!selected);
-          }}
-        >
-          <FavoriteIcon />
-        </ToggleButton>
-        {` `}
-        {/* <Typography> 22</Typography> */}
-        {/* </IconButton> */}
-        <IconButton aria-label="share">
-          <CommentIcon />
-        </IconButton>
+        <Box display={"flex"}>
+          <Box>
+            <ToggleButton
+              value="like"
+              selected={selected}
+              onChange={() => {
+                handleLike(selected);
+                selected
+                  ? setLikeCount(likeCount - 1)
+                  : setLikeCount(likeCount + 1);
+                setSelected(!selected);
+              }}
+            >
+              {selected ? (
+                <FavoriteIcon fontSize="small" color="secondary" />
+              ) : (
+                <FavoriteIcon fontSize="small" />
+              )}
+            </ToggleButton>
+          </Box>
+          {`   `}
+          <span> </span>
+          {`   `}
+          <Box l={3} p={1} b={4}>
+            <Typography style={{ fontSize: "1.15rem" }}>
+              {" "}
+              {likeCount}
+            </Typography>
+          </Box>
+          <Box display={"flex"}>
+            <IconButton aria-label="share">
+              <CommentIcon />
+            </IconButton>
+            <Typography style={{ fontSize: "1.15rem", marginTop: ".5rem" }}>
+              {" "}
+              {props.comments.length}
+            </Typography>
+          </Box>
+          {/* <Box l={0} p={1} b={0}> */}
+          {/* <Typography style={{ fontSize: "1.25rem" }}>
+            {" "}
+            {props.comments.length}
+          </Typography> */}
+          {/* </Box> */}
+        </Box>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

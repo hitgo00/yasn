@@ -122,7 +122,6 @@ export default function SignIn() {
           </Typography>
           <br />
 
-          {/* <a href={`${ConnectServerUrl}/auth/google`}> */}
           <GsignIn
             element={
               <GoogleButton
@@ -134,23 +133,12 @@ export default function SignIn() {
               />
             }
           />
-          {/* <GoogleButton
-            ref="googleLoginBtn"
-            type="dark"
-            className={classes.submit}
-            onClick={() => {
-              console.log("Google button clicked");
-            }}
-          /> */}
-          {/* </a> */}
+
           <br />
           <Typography component="h5" variant="h6">
             <i>using @daiict.ac.in email.</i>
           </Typography>
-          {/* <Typography component="h1" variant="h6">
-            It's an exclusive Social Network for DA, you can login only with
-            @daiict.ac.in email address
-          </Typography> */}
+
           <Box mt={5} className={classes.copyright}>
             <Copyright />
           </Box>

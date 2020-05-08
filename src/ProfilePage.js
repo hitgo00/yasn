@@ -61,7 +61,7 @@ export default function ProfilePage(props) {
             .slice(0)
             .reverse()
             .map((post) => (
-              <LazyLoad height={200} offset={10} key={post._id}>
+              <LazyLoad height={200} offset={40} key={post._id}>
                 <PostCard {...post} key={post._id} Name={userDetails.name} />
               </LazyLoad>
             ))
