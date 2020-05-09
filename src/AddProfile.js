@@ -52,6 +52,7 @@ export default function AddProfile() {
   const userCookie = cookies.get("userCookie");
   const name = userCookie.Name;
   const email = userCookie.Email;
+  const errors = {};
 
   const tags = [
     "DSC",
@@ -84,7 +85,6 @@ export default function AddProfile() {
   ];
 
   //   const [ccn, setCcn] = useState(0);
-
   return (
     <div>
       <Formik
@@ -101,7 +101,6 @@ export default function AddProfile() {
           tags: [],
         }}
         validate={(values) => {
-          const errors = {};
           if (values.ccn < 0) errors.ccn = "Can't be negative";
           if (values.ccn > 20) errors.ccn = "impossible";
 
@@ -122,6 +121,9 @@ export default function AddProfile() {
             })
             .then(function (res) {
               console.log(res);
+              if (res.data == "username already taken") {
+                errors.username = "username already taken";
+              }
               if (res.data == "success") setProfile(true);
             })
             .catch(function (error) {
@@ -178,7 +180,10 @@ export default function AddProfile() {
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
-              />
+              />{" "}
+              <Typography style={{ color: "black" }}>
+                {errors.username && touched.username && errors.username}
+              </Typography>
               <Typography style={{ color: "black", marginTop: ".5rem" }}>
                 Clubs/Committees
               </Typography>

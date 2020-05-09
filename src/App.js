@@ -36,8 +36,8 @@ function App() {
           queryString.stringify({ email: userEmail }, { withCredentials: true })
       )
       .then((res) => {
-        console.log(res.data[0]._id);
-        cookies.set("userId", res.data[0]._id);
+        console.log(res.data[0]);
+        cookies.set("userDetails", res.data[0]);
         if (!res.data) setProfile(false);
       });
   }, []);

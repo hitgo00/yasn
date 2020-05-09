@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "@reach/router";
+import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -23,43 +24,38 @@ const useStyles = makeStyles((theme) => ({
   demo: {
     backgroundColor: theme.palette.background.paper,
   },
+  avatar: {
+    backgroundColor: red[500],
+  },
 }));
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    })
-  );
-}
-
-export default function Comment() {
+export default function Comment(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
-        <Typography variant="h6" className={classes.title}>
-          Comments
-        </Typography>
         <div className={classes.demo}>
           <List>
-            {generate(
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    {/* icon can be added here */}
-                    MJ
+            {/* {generate( */}
+            <ListItem>
+              <ListItemAvatar>
+                <Link to={`/${props.username}`}>
+                  <Avatar className={classes.avatar}>
+                    {props.name
+                      ? props.name[0] + props.name.split(" ")[1][0]
+                      : "X"}
                   </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Great Project guys!" secondary={"2w"} />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            )}
+                </Link>
+              </ListItemAvatar>
+              <ListItemText primary={props.comment} secondary={"2w"} />
+              <ListItemSecondaryAction>
+                {/* <IconButton edge="end" aria-label="delete">
+                  <DeleteIcon fontSize="small" />
+                </IconButton> */}
+              </ListItemSecondaryAction>
+            </ListItem>
+            {/* )} */}
           </List>
         </div>
       </Grid>

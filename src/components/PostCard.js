@@ -66,15 +66,17 @@ export default function PostCard(props) {
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes.likers.length);
+  const [comments, setComments] = useState(props.comments);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   useEffect(() => {
-    if (props.likes.likers.find((e) => e === cookies.get("userId")))
+    if (props.likes.likers.find((e) => e === cookies.get("userDetails")._id))
       setSelected(true);
   }, []);
+
   const handleLike = (selected) => {
     let liked = !selected;
 
@@ -83,7 +85,7 @@ export default function PostCard(props) {
         `${ConnectServerUrl}/handlelike?` +
           queryString.stringify({ _id: props._id }),
         {
-          currentUserId: cookies.get("userId"),
+          currentUserId: cookies.get("userDetails")._id,
           email,
           liked,
           //liked is true if user like , false if unliked ;
@@ -211,9 +213,25 @@ export default function PostCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <AddComment />
+          <Typography variant="h6" className={classes.title}>
+            Comments
+          </Typography>
+          <AddComment
+            name={cookies.get("userDetails").name}
+            postId={props._id}
+            userId={cookies.get("userDetails")._id}
+            username={cookies.get("userDetails").username}
+          />
 
-          <Comment />
+          {comments
+            ? comments.map((comment) => (
+                <Comment
+                  {...comment}
+                  key={comment.date}
+                  // onClick={handleComments}
+                />
+              ))
+            : null}
         </CardContent>
       </Collapse>
     </Card>
