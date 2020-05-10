@@ -91,7 +91,7 @@ export default function AddProfile() {
         initialValues={{
           email: "",
           password: "",
-          name: name,
+          name: "",
           username: "",
           ccn: 0,
           github: "",
