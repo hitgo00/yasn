@@ -188,7 +188,10 @@ const AddPostPage = () => {
     else if (Media === "video") return <Video videoUrl={VideoUrl} />;
     else
       return (
-        <Upload element={<AddPhotoAlternateIcon />} text="Upload Image/Video" />
+        <Upload
+          element={<AddPhotoAlternateIcon />}
+          text="Upload Image/Video (required)"
+        />
       );
   };
 
