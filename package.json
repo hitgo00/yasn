@@ -1,5 +1,6 @@
 {
   "name": "yasn",
+  "homepage": "https://yasn.now.sh",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

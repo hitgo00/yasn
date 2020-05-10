@@ -33,6 +33,12 @@ import "./PostCard.scss";
 
 const cookies = new Cookies();
 const email = cookies.get("userCookie").Email;
+let name, userId, username;
+if (cookies.get("userDetails")) {
+  name = cookies.get("userDetails").name;
+  userId = cookies.get("userDetails")._id;
+  username = cookies.get("userDetails").username;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,8 +87,7 @@ export default function PostCard(props) {
   };
 
   useEffect(() => {
-    if (props.likes.likers.find((e) => e === cookies.get("userDetails")._id))
-      setSelected(true);
+    if (props.likes.likers.find((e) => e === userId)) setSelected(true);
   }, []);
 
   const handleLike = (selected) => {
@@ -225,10 +230,10 @@ export default function PostCard(props) {
             Comments
           </Typography>
           <AddComment
-            name={cookies.get("userDetails").name}
+            name={name}
             postId={props._id}
-            userId={cookies.get("userDetails")._id}
-            username={cookies.get("userDetails").username}
+            userId={userId}
+            username={username}
           />
 
           {comments

@@ -36,6 +36,7 @@ export default function GsignIn(props) {
         };
 
         setCookie("userCookie", AuthCookie, { path: "/" });
+
         window.location.reload();
       },
       (error) => {
