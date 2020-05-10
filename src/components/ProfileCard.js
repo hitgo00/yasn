@@ -84,21 +84,27 @@ const ProfileCard = (props) => {
         </span>
 
         <Box display={"flex"}>
-          <Box flex={"auto"} p={2}>
-            <a target="_blank" href={instagram}>
-              <InstagramIcon />
-            </a>
-          </Box>
-          <Box flex={"auto"} p={2}>
-            <a target="_blank" href={github}>
-              <GitHubIcon />
-            </a>
-          </Box>
-          <Box flex={"auto"} p={2}>
-            <a target="_blank" href={linkedin}>
-              <LinkedInIcon style={{ link: { color: "black" } }} />
-            </a>
-          </Box>
+          {instagram ? (
+            <Box flex={"auto"} p={2}>
+              <a target="_blank" href={instagram}>
+                <InstagramIcon />
+              </a>
+            </Box>
+          ) : null}
+          {github ? (
+            <Box flex={"auto"} p={2}>
+              <a target="_blank" href={github}>
+                <GitHubIcon />
+              </a>
+            </Box>
+          ) : null}
+          {linkedin ? (
+            <Box flex={"auto"} p={2}>
+              <a target="_blank" href={linkedin}>
+                <LinkedInIcon style={{ link: { color: "black" } }} />
+              </a>
+            </Box>
+          ) : null}
         </Box>
 
         {/* <EditIcon fontSize="small" /> */}

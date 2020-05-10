@@ -244,7 +244,7 @@ const AddPostPage = () => {
                       .then(function (res) {
                         console.log(res);
 
-                        if (res.data == "successfully added post")
+                        if (res.data === "successfully added post")
                           setPostSuccess(true);
                       })
                       .catch(function (error) {

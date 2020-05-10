@@ -12,7 +12,6 @@ const HomePage = (props) => {
   const [posts, SetPosts] = useState();
 
   useEffect(() => {
-    // SetBrowseTag(props.tag);
     axios
       .get(
         `${ConnectServerUrl}/home?` +

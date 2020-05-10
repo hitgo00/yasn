@@ -44,7 +44,7 @@ export default function InputWithIcon(props) {
                 .then(function (res) {
                   console.log(res);
 
-                  if (res.data == "success") {
+                  if (res.data === "success") {
                     console.log("comment added!");
                     window.location.reload();
                   }
