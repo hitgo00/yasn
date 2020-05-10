@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import Moment from "react-moment";
 import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -51,7 +52,11 @@ export default function Comment(props) {
               </ListItemAvatar>
               <ListItemText
                 primary={props.comment}
-                // secondary={"2w"}
+                secondary={
+                  <Moment format="MMM D" withTitle>
+                    {props.date}
+                  </Moment>
+                }
               />
               <ListItemSecondaryAction>
                 {/* <IconButton edge="end" aria-label="delete">
