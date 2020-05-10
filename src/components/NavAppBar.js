@@ -180,6 +180,7 @@ export default function NavAppBar(props) {
   const handleLogOut = () => {
     setMobileMoreAnchorEl(null);
     cookies.remove("userCookie");
+    cookies.remove("userDetails");
     window.location.reload();
   };
 
