@@ -49,7 +49,10 @@ export default function Comment(props) {
                   </Avatar>
                 </Link>
               </ListItemAvatar>
-              {/* <ListItemText primary={props.comment} secondary={"2w"} /> */}
+              <ListItemText
+                primary={props.comment}
+                // secondary={"2w"}
+              />
               <ListItemSecondaryAction>
                 {/* <IconButton edge="end" aria-label="delete">
                   <DeleteIcon fontSize="small" />
