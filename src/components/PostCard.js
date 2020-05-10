@@ -29,14 +29,22 @@ import Comment from "./Comment";
 import { CloudName, UploadPreset, ConnectServerUrl } from "../constants";
 
 import { Cookies } from "react-cookie";
+import "./PostCard.scss";
 
 const cookies = new Cookies();
 const email = cookies.get("userCookie").Email;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 355,
+    minWidth: "28vw",
+    maxWidth: 400,
     Width: "89vw",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "88vw",
+      maxHeight: "70vh",
+      // width: "auto",
+    },
+
     marginTop: 20,
     // margin: "1rem",
     align: "center",
@@ -96,7 +104,7 @@ export default function PostCard(props) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className="card" className={classes.root}>
       <CardHeader
         avatar={
           <Link to={`/${props.creator.username}`}>

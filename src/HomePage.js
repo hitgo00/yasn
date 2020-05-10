@@ -4,12 +4,15 @@ import queryString from "query-string";
 import { ConnectServerUrl } from "./constants";
 import PostCard from "./components/PostCard";
 import LazyLoad from "react-lazyload";
+import Loader from "./components/Loader";
 
 const HomePage = (props) => {
+  const [loading, setLoading] = useState(true);
   const [browseTag, SetBrowseTag] = useState(props.tag);
   const [posts, SetPosts] = useState();
 
   useEffect(() => {
+    // SetBrowseTag(props.tag);
     axios
       .get(
         `${ConnectServerUrl}/home?` +
@@ -18,20 +21,25 @@ const HomePage = (props) => {
       .then((res) => {
         console.log(res.data);
         SetPosts(res.data);
+        setLoading(false);
       })
 
       .catch((err) => console.log(err));
-  }, [browseTag]);
+  });
 
   return (
     <div>
-      {posts
-        ? posts.map((post) => (
-            <LazyLoad height={200} offset={40} key={post._id}>
+      {!loading ? (
+        posts ? (
+          posts.map((post) => (
+            <LazyLoad height={200} offset={0} key={post._id}>
               <PostCard {...post} key={post._id} />{" "}
             </LazyLoad>
           ))
-        : null}
+        ) : null
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

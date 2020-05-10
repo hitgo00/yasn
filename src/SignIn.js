@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     backgroundImage:
-      "url(https://res.cloudinary.com/hitgo/image/upload/v1588514041/IMG_1871-min_bdi4sj.png)",
+      "url(https://res.cloudinary.com/hitgo/image/upload/q_25/v1588514041/IMG_1871-min_bdi4sj.png)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   imageS: {
     backgroundImage:
-      "url(https://res.cloudinary.com/hitgo/image/upload/q_25/v1588528057/Canva_-_Black_Coffee_Cup_and_Black_Notepad_on_Black_Table-min_h28trv.jpg)",
+      "url(https://res.cloudinary.com/hitgo/image/upload/v1588528057/Canva_-_Black_Coffee_Cup_and_Black_Notepad_on_Black_Table-min_h28trv.jpg)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"

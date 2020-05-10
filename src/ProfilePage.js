@@ -6,11 +6,13 @@ import { Cookies } from "react-cookie";
 import axios from "axios";
 import queryString from "query-string";
 import { ConnectServerUrl } from "./constants";
+import Loader from "./components/Loader";
 
 const cookies = new Cookies();
 const email = cookies.get("userCookie").Email;
 
 export default function ProfilePage(props) {
+  const [loading, setLoading] = useState(true);
   const [userDetails, SetUserDetails] = useState({});
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export default function ProfilePage(props) {
         .then((res) => {
           console.log(res.data[0]);
           SetUserDetails(res.data[0]);
+          setLoading(false);
         })
         .catch((err) => console.log(err));
     } else {
@@ -38,26 +41,34 @@ export default function ProfilePage(props) {
         .then((res) => {
           console.log(res.data[0]);
           SetUserDetails(res.data[0]);
+          setLoading(false);
         })
         .catch((err) => console.log(err));
     }
   }, []);
+
   return (
     <div>
-      {userDetails ? (
-        <ProfileCard
-          name={userDetails.name}
-          clubs={userDetails.clubsNumber}
-          roll={email.split("@")[0]}
-          bio={userDetails.bio}
-          posts={userDetails.posts}
-          github={userDetails.gitHubUrl}
-          linkedin={userDetails.linkedInUrl}
-          instagram={userDetails.instaUrl}
-        />
-      ) : null}
-      {userDetails.posts
-        ? userDetails.posts
+      {!loading ? (
+        userDetails ? (
+          <ProfileCard
+            name={userDetails.name}
+            clubs={userDetails.clubsNumber}
+            roll={email.split("@")[0]}
+            bio={userDetails.bio}
+            posts={userDetails.posts}
+            github={userDetails.gitHubUrl}
+            linkedin={userDetails.linkedInUrl}
+            instagram={userDetails.instaUrl}
+          />
+        ) : null
+      ) : (
+        <Loader />
+      )}
+
+      {!loading ? (
+        userDetails.posts ? (
+          userDetails.posts
             .slice(0)
             .reverse()
             .map((post) => (
@@ -65,7 +76,10 @@ export default function ProfilePage(props) {
                 <PostCard {...post} key={post._id} Name={userDetails.name} />
               </LazyLoad>
             ))
-        : null}
+        ) : null
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 }

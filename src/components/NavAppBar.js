@@ -39,7 +39,7 @@ import { useTheme } from "@material-ui/core/styles";
 
 import DonutSmallIcon from "@material-ui/icons/DonutSmall";
 
-import { Link } from "@reach/router";
+import { Link, Redirect } from "@reach/router";
 
 import { Cookies } from "react-cookie";
 
@@ -272,62 +272,74 @@ export default function NavAppBar(props) {
 
       <Divider />
       <List>
-        <Link to="/home/Project">
+        {/* <Link to="/home/Project"> */}
+        <a href="/home/Project">
           <ListItem button key={"Projects"}>
             <ListItemIcon>
               <GitHubIcon />
             </ListItemIcon>
             <ListItemText primary={"Projects"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
 
-        <Link to="/home/Writings">
+        {/* <Link to="/home/Writings"> */}
+        <a href="/home/Writings">
           <ListItem button key={"Writings"}>
             <ListItemIcon>
               <CreateIcon />
             </ListItemIcon>
             <ListItemText primary={"Writings"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
 
-        <Link to="/home/Artwork">
+        {/* <Link to="/home/Artwork" onClick={handleTagLink}> */}
+        <a href="/home/Artwork">
           <ListItem button key={"Artwork"}>
             <ListItemIcon>
               <GestureIcon />
             </ListItemIcon>
             <ListItemText primary={"Artwork"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
       </List>
       <Divider />
 
       <List>
-        <Link to="/home/Music">
+        {/* <Link to="/home/Music"> */}
+        <a href="/home/Music">
           <ListItem button key={"Music"}>
             <ListItemIcon>
               <MusicNoteIcon />
             </ListItemIcon>
             <ListItemText primary={"Music"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
 
-        <Link to="/home/Dance">
+        {/* <Link to="/home/Dance"> */}
+        <a href="/home/Dance">
           <ListItem button key={"Dance"}>
             <ListItemIcon>
               <DirectionsWalkIcon />
             </ListItemIcon>
             <ListItemText primary={"Dance"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
 
-        <Link to="/home/Other">
+        {/* <Link to="/home/Other"> */}
+        <a href="/home/Other">
           <ListItem button key={"Other"}>
             <ListItemIcon>
               <CallSplitIcon />
             </ListItemIcon>
             <ListItemText primary={"Other"} />
           </ListItem>
-        </Link>
+        </a>
+        {/* </Link> */}
       </List>
       <Divider />
     </div>
