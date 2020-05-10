@@ -34,11 +34,6 @@ import "./PostCard.scss";
 const cookies = new Cookies();
 const email = cookies.get("userCookie").Email;
 let name, userId, username;
-if (cookies.get("userDetails")) {
-  name = cookies.get("userDetails").name;
-  userId = cookies.get("userDetails")._id;
-  username = cookies.get("userDetails").username;
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,13 +75,18 @@ export default function PostCard(props) {
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes.likers.length);
-  const [comments, setComments] = useState(props.comments);
+  const comments = props.comments;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   useEffect(() => {
+    if (cookies.get("userDetails")) {
+      name = cookies.get("userDetails").name;
+      userId = cookies.get("userDetails")._id;
+      username = cookies.get("userDetails").username;
+    }
     if (props.likes.likers.find((e) => e === userId)) setSelected(true);
   }, []);
 
