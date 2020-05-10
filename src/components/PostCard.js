@@ -116,9 +116,11 @@ export default function PostCard(props) {
             <Avatar aria-label="recipe" className={classes.avatar}>
               {props.creator
                 ? props.creator.name
-                  ? props.creator.name[0] + props.creator.name.split(" ")[1][0]
-                  : props.Name[0] + props.Name.split(" ")[1][0]
-                : props.Name
+                  ? props.creator.name[0]
+                  : // + props.creator.name.split(" ")[1][0]
+                    props.Name[0]
+                : // + props.Name.split(" ")[1][0]
+                props.Name
                 ? props.Name
                 : "X"}
             </Avatar>

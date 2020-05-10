@@ -72,7 +72,10 @@ const ProfileCard = (props) => {
           className={styles.avatar}
           //  src={"https://i.pravatar.cc/300"}
         >
-          {name ? name[0] + name.split(" ")[1][0] : "X"}
+          {name
+            ? name[0]
+            : // + name.split(" ")[1][0]
+              "X"}
         </Avatar>
 
         <h3 className={styles.heading}>{name}</h3>

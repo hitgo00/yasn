@@ -43,8 +43,9 @@ export default function Comment(props) {
                 <Link to={`/${props.username}`}>
                   <Avatar className={classes.avatar}>
                     {props.name
-                      ? props.name[0] + props.name.split(" ")[1][0]
-                      : "X"}
+                      ? props.name[0]
+                      : // + props.name.split(" ")[1][0]
+                        "X"}
                   </Avatar>
                 </Link>
               </ListItemAvatar>

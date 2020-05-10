@@ -54,7 +54,7 @@ export default function ProfilePage(props) {
           <ProfileCard
             name={userDetails.name}
             clubs={userDetails.clubsNumber}
-            roll={email.split("@")[0]}
+            roll={userDetails.email.split("@")[0]}
             bio={userDetails.bio}
             posts={userDetails.posts}
             github={userDetails.gitHubUrl}
