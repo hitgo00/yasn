@@ -25,9 +25,11 @@ REACT_APP_UPLOAD_PRESET=#Cloudinary Upload Preset
 
 ```bash
 yarn start
+```
 
 
-- Build the production level extension:
+
+- For production build:
 
 ```bash
 yarn build
