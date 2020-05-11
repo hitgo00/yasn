@@ -45,7 +45,7 @@ export default function ProfilePage(props) {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [props.username]);
 
   return (
     <div>
