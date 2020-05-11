@@ -1,5 +1,9 @@
 # Yet Another Social network
  A simple social media application with users, posts, likes and comments - developed using React, Node, Express and MongoDB.
+ 
+ You can find the repository for the Connect(YASN) server [here.](https://github.com/hitgo00/yasn-server)
+ 
+ You can find the repository for the Darkrai(Chat) server [here.](https://github.com/darkraichat/darkrai-server)
 
 ## CONNECT
  A YASN exclusively for students of DAIICT! 
