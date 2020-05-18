@@ -236,6 +236,7 @@ const AddPostPage = () => {
                         `${ConnectServerUrl}/addpost?` +
                           queryString.stringify({ email }),
                         {
+                          currentUserId: cookies.get("userDetails")._id,
                           title: values.title,
                           tags: values.tags,
                           description: values.description,
