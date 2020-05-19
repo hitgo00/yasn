@@ -31,6 +31,10 @@ import { CloudName, UploadPreset, ConnectServerUrl } from "../constants";
 import { Cookies } from "react-cookie";
 import "./PostCard.scss";
 
+const cookies = new Cookies();
+const email = cookies.get("userCookie").Email;
+let name, userId, username;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: "28vw",
@@ -72,10 +76,6 @@ export default function PostCard(props) {
   const [selected, setSelected] = useState(false);
   const [likeCount, setLikeCount] = useState(props.likes.likers.length);
   const comments = props.comments;
-
-  const cookies = new Cookies();
-  const email = cookies.get("userCookie").Email;
-  let name, userId, username;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

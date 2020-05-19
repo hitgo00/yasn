@@ -10,6 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { Cookies } from "react-cookie";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputWithIcon(props) {
   const classes = useStyles();
+  const cookies = new Cookies();
+  const email = cookies.get("userCookie").Email;
+  let name, userId, username;
 
   return (
     <div>
