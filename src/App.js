@@ -29,7 +29,7 @@ function App() {
 
   const [profile, setProfile] = useContext(ProfileContext);
 
-  useEffect(() => {
+  useEffect(async () => {
     axios
       .get(
         `${ConnectServerUrl}/checkprofile?` +
