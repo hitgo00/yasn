@@ -1,9 +1,7 @@
 # Yet Another Social network
  A simple social media application with users, posts, likes and comments - developed using React, Node, Express and MongoDB.
  
- You can find the repository for the Connect(YASN) server [here.](https://github.com/hitgo00/yasn-server)
- 
- You can find the repository for the Darkrai(Chat) server [here.](https://github.com/darkraichat/darkrai-server)
+ You can find the repository for the Connect(YASN) server [here](https://github.com/hitgo00/yasn-server) and the Darkrai(Chat) server [here.](https://github.com/darkraichat/darkrai-server)
 
 ## CONNECT
  A YASN exclusively for students of DAIICT! 
@@ -15,7 +13,7 @@
 
 - You need Node & Yarn to start the development environment. Download them here - [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com).
 
-- Optionally you can setup a `.env` file in the root of the repository to set the server url (if you don't do this it will default to `http://localhost:4848`). The file should look like this:
+- You can setup a `.env` file in the root of the repository to set the server url (if you don't do this it will default to `http://localhost:4848`). The file should look like this:
 
 ```bash
 REACT_APP_SERVER_URL=#Darkrai server url
