@@ -66,6 +66,7 @@ export default function AddProfile() {
     "CMC",
     "HMC",
     "Sports Comm",
+    "DCEI",
     "ICT Comm",
     "Acad Comm",
     "Radio Club",
