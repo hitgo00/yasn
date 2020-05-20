@@ -36,7 +36,7 @@ export default function InputWithIcon(props) {
           }}
           validate={() => {}}
           onSubmit={async (values) => {
-            if (values.comment) {
+            if (values.comment && props.userId) {
               axios
                 .post(`${ConnectServerUrl}/addcomment`, {
                   comment: values.comment,
