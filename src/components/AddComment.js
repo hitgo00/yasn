@@ -1,16 +1,16 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Formik } from "formik";
-import axios from "axios";
-import { ConnectServerUrl } from "../constants";
-import IconButton from "@material-ui/core/IconButton";
-import SendIcon from "@material-ui/icons/Send";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Formik } from 'formik';
+import axios from 'axios';
+import { ConnectServerUrl } from '../constants';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from '@material-ui/icons/Send';
 
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { Cookies } from "react-cookie";
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import FormControl from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Cookies } from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,16 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputWithIcon(props) {
   const classes = useStyles();
-  const cookies = new Cookies();
-  const email = cookies.get("userCookie").Email;
-  let name, userId, username;
 
   return (
     <div>
       <div className={classes.margin}>
         <Formik
           initialValues={{
-            comment: "",
+            comment: '',
           }}
           validate={() => {}}
           onSubmit={async (values) => {
@@ -48,8 +45,8 @@ export default function InputWithIcon(props) {
                 .then(function (res) {
                   console.log(res);
 
-                  if (res.data === "success") {
-                    console.log("comment added!");
+                  if (res.data === 'success') {
+                    console.log('comment added!');
                     window.location.reload();
                   }
                 })
@@ -64,13 +61,9 @@ export default function InputWithIcon(props) {
         >
           {({
             values,
-            errors,
-            touched,
             handleChange,
             handleBlur,
             handleSubmit,
-            setFieldValue,
-
             /* and other goodies */
           }) => (
             <form onSubmit={handleSubmit} className={classes.root}>

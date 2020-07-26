@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { Formik, Form, Field } from "formik";
-import { useStoreState, useStoreActions } from "easy-peasy";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field } from 'formik';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import "./Chat.scss";
+import './Chat.scss';
 
 const Message = ({ by, content, user }) => (
   <span
     style={{
       padding: 4,
-      color: user ? "cyan" : "white",
+      color: user ? 'cyan' : 'white',
     }}
   >
     <b>{by}:</b> {content}
@@ -23,7 +23,6 @@ Message.propTypes = {
 };
 
 const Chat = () => {
-  // eslint-disable-next-line
   const [height, setHeight] = useState(window.innerHeight - 200);
   const { messageData, socket, nickname } = useStoreState((state) => state);
   const setMessageData = useStoreActions((actions) => actions.setMessageData);
@@ -31,25 +30,18 @@ const Chat = () => {
 
   // Recieve effect
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    socket.on('receive_message', (data) => {
       setMessageData([...messages, data]);
     });
   }, [messageData, messages, setMessageData, socket]);
 
   // Delete effect
   useEffect(() => {
-    socket.on("delete_message", (data) => {
+    socket.on('delete_message', (data) => {
       const temp = messages.filter((item) => item.message !== data.message);
       setMessageData(temp);
     });
   }, [messageData, messages, setMessageData, socket]);
-
-  // Window listener
-  //   useEffect(() => {
-  //     window.addEventListener("resize", setHeight(window.innerHeight - 200));
-  //     return () =>
-  //       window.removeEventListener("resize", setHeight(window.innerHeight - 200));
-  //   }, []);
 
   return (
     <div className="Chat-wrapper">
@@ -57,9 +49,6 @@ const Chat = () => {
         <span className="title">ChatApp </span>
         <br />
         <sub>powered by Darkrai</sub>
-        {/* <span>
-          chatting as <b>{nickname}</b>
-        </span> */}
       </div>
       <br />
       <div
@@ -77,10 +66,10 @@ const Chat = () => {
       <div className="send-form">
         <Formik
           initialValues={{
-            message: "",
+            message: '',
           }}
           onSubmit={(values, actions) => {
-            socket.emit("send_message", {
+            socket.emit('send_message', {
               message: values.message,
             });
             actions.resetForm();

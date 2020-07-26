@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import ProfileCard from "./components/ProfileCard";
-import PostCard from "./components/PostCard";
-import LazyLoad from "react-lazyload";
-import { Cookies } from "react-cookie";
-import axios from "axios";
-import queryString from "query-string";
-import { ConnectServerUrl } from "./constants";
-import Loader from "./components/Loader";
+import React, { useEffect, useState } from 'react';
+import ProfileCard from '../components/ProfileCard';
+import PostCard from '../components/PostCard';
+import LazyLoad from 'react-lazyload';
+import { Cookies } from 'react-cookie';
+import axios from 'axios';
+import queryString from 'query-string';
+import { ConnectServerUrl } from '../constants';
+import Loader from '../components/Loader';
 
 const cookies = new Cookies();
-const email = cookies.get("userCookie").Email;
+const email = cookies.get('userCookie').Email;
 
 export default function ProfilePage(props) {
   const [loading, setLoading] = useState(true);
   const [userDetails, SetUserDetails] = useState({});
 
   useEffect(() => {
-    console.log("get request");
+    console.log('get request');
     if (props.username) {
       axios
         .get(
@@ -54,7 +54,7 @@ export default function ProfilePage(props) {
           <ProfileCard
             name={userDetails.name}
             clubs={userDetails.clubsNumber}
-            roll={userDetails.email.split("@")[0]}
+            roll={userDetails.email.split('@')[0]}
             bio={userDetails.bio}
             posts={userDetails.posts}
             github={userDetails.gitHubUrl}

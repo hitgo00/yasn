@@ -1,16 +1,16 @@
-import React, { useRef, useEffect } from "react";
-import { GoogleClientId } from "./constants";
-import { useCookies, withCookies } from "react-cookie";
+import React, { useRef, useEffect } from 'react';
+import { GoogleClientId } from '../constants';
+import { useCookies, withCookies } from 'react-cookie';
 
 export default function GsignIn(props) {
-  const [cookies, setCookie] = useCookies([""]);
+  const [cookies, setCookie] = useCookies(['']);
 
   let auth2;
   const googleLoginBtn = useRef(null);
 
   useEffect(() => {
     googleSDK();
-    console.log("sfsfd");
+    console.log('sfsfd');
   });
 
   const prepareLoginButton = () => {
@@ -22,11 +22,11 @@ export default function GsignIn(props) {
       {},
       (googleUser) => {
         let profile = googleUser.getBasicProfile();
-        console.log("Token || " + googleUser.getAuthResponse().id_token);
-        console.log("ID: " + profile.getId());
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
 
         let AuthCookie = {
           Token: googleUser.getAuthResponse().id_token,
@@ -35,7 +35,7 @@ export default function GsignIn(props) {
           Email: profile.getEmail(),
         };
 
-        setCookie("userCookie", AuthCookie, { path: "/" });
+        setCookie('userCookie', AuthCookie, { path: '/' });
 
         window.location.reload();
       },
@@ -46,14 +46,14 @@ export default function GsignIn(props) {
   };
 
   const googleSDK = () => {
-    window["googleSDKLoaded"] = () => {
-      window["gapi"].load("auth2", () => {
-        auth2 = window["gapi"].auth2.init({
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        auth2 = window['gapi'].auth2.init({
           client_id: GoogleClientId,
-          hosted_domain: "daiict.ac.in",
-          cookiepolicy: "single_host_origin",
-          prompt: "select_account",
-          scope: "profile email",
+          hosted_domain: 'daiict.ac.in',
+          cookiepolicy: 'single_host_origin',
+          prompt: 'select_account',
+          scope: 'profile email',
         });
         prepareLoginButton();
       });
@@ -67,9 +67,9 @@ export default function GsignIn(props) {
       }
       js = d.createElement(s);
       js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
       fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "google-jssdk");
+    })(document, 'script', 'google-jssdk');
   };
 
   return <div ref={googleLoginBtn}>{props.element}</div>;

@@ -1,29 +1,27 @@
-import React, { useEffect, useCallback, useState } from "react";
-import openSocket from "socket.io-client";
-import { Formik, Form, Field } from "formik";
-import axios from "axios";
-import queryString from "query-string";
-import { useStoreState, useStoreActions } from "easy-peasy";
+import React, { useEffect, useCallback, useState } from 'react';
+import openSocket from 'socket.io-client';
+import { Formik, Form, Field } from 'formik';
+import axios from 'axios';
+import queryString from 'query-string';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import { serverUrl } from "../constants";
-import "./Starter.scss";
+import { serverUrl } from '../constants';
+import './Starter.scss';
 
 const Starter = () => {
-  const url = "Da-Connect";
+  const url = 'Da-Connect';
   const [loading, setLoading] = useState(false);
   const { setChat, setMessageData, setSocket, setNickname } = useStoreActions(
     (actions) => actions
   );
   const nickname = useStoreState((state) => state.nickname);
-
-  // eslint-disable-next-line
   const login = useCallback((username) => {
     let socket = openSocket(serverUrl);
 
     if (socket) {
       setSocket(socket);
-      socket.on("connection");
-      socket.emit("add_user", {
+      socket.on('connection');
+      socket.emit('add_user', {
         username,
         website: url,
       });
@@ -32,13 +30,13 @@ const Starter = () => {
       axios
         .get(
           `${serverUrl}/login?` +
-            queryString.stringify({ website: "Da-Connect" })
+            queryString.stringify({ website: 'Da-Connect' })
         )
         .then((res) => {
           setMessageData(res.data);
           setChat(true);
         })
-        .catch((err) => console.log("Error:\n", err));
+        .catch((err) => console.log('Error:\n', err));
     }
 
     // return <p>loading..</p>;
@@ -55,7 +53,7 @@ const Starter = () => {
       <div>
         <span className="title">ChatApp </span> <br />
         <sub>
-          powered by{" "}
+          powered by{' '}
           <a
             target="_blank"
             href="https://github.com/darkraichat"
@@ -76,7 +74,7 @@ const Starter = () => {
           setLoading(true);
           login(values.name);
         }}
-        initialValues={{ name: "" }}
+        initialValues={{ name: '' }}
       >
         {({ handleSubmit, handleChange, values }) => (
           <Form onSubmit={handleSubmit}>

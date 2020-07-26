@@ -1,30 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import "./App.css";
-// import PrimarySearchAppBar from "./components/PrimarySearchAppBar";
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
+import './App.css';
+import NavAppBar from './components/NavAppBar';
 
-import NavAppBar from "./components/NavAppBar";
+import { Router } from '@reach/router';
+import HomePage from './Pages/HomePage';
+import { StoreProvider } from 'easy-peasy';
 
-import { Router } from "@reach/router";
-import HomePage from "./HomePage";
-import { StoreProvider } from "easy-peasy";
+import ProfilePage from './Pages/ProfilePage';
+import AddPostPage from './Pages/AddPostPage';
+import SignIn from './Pages/SignIn';
+import AddProfile from './Pages/AddProfile';
 
-import ProfilePage from "./ProfilePage";
-import AddPostPage from "./AddPostPage";
-import SignIn from "./SignIn";
-import AddProfile from "./AddProfile";
-
-import ChatApp from "./ChatApp";
-import { store } from "./store";
-import { ConnectServerUrl } from "./constants";
-import queryString from "query-string";
-import { Cookies, useCookies } from "react-cookie";
-import ProfileContext from "./components/ProfileContext";
+import ChatApp from './Pages/ChatApp';
+import { store } from './store';
+import { ConnectServerUrl } from './constants';
+import queryString from 'query-string';
+import { Cookies, useCookies } from 'react-cookie';
+import ProfileContext from './components/ProfileContext';
 
 const cookies = new Cookies();
-
 function App() {
-  const userCookie = cookies.get("userCookie");
+  const userCookie = cookies.get('userCookie');
   const userEmail = userCookie.Email;
 
   const [profile, setProfile] = useContext(ProfileContext);
@@ -37,7 +34,7 @@ function App() {
       )
       .then((res) => {
         console.log(res.data[0]);
-        cookies.set("userDetails", res.data[0]);
+        cookies.set('userDetails', res.data[0]);
         if (!res.data) setProfile(false);
       });
   }, []);

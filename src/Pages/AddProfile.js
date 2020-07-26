@@ -1,46 +1,46 @@
-import React, { useState, useContext } from "react";
-import { Formik } from "formik";
-import axios from "axios";
-import { ConnectServerUrl } from "./constants";
+import React, { useState, useContext } from 'react';
+import { Formik } from 'formik';
+import axios from 'axios';
+import { ConnectServerUrl } from '../constants';
 
-import TextField from "@material-ui/core/TextField";
-import Avatar from "@material-ui/core/Avatar";
-import { red } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Button from "@material-ui/core/Button";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import ProfileContext from "./components/ProfileContext";
+import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+import { red } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import ProfileContext from '../components/ProfileContext';
 
-import { Cookies } from "react-cookie";
+import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiTextField-root": {
+    '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      color: "black",
+      color: 'black',
 
-      width: "auto",
+      width: 'auto',
     },
-    margin: "2rem",
-    backgroundColor: "white",
-    padding: "3rem",
+    margin: '2rem',
+    backgroundColor: 'white',
+    padding: '3rem',
   },
   heading: {
-    color: "black",
-    fontSize: "1.5rem",
+    color: 'black',
+    fontSize: '1.5rem',
   },
   input: {
-    width: "auto",
+    width: 'auto',
   },
   avatar: {
     width: 60,
     height: 60,
-    margin: "auto",
+    margin: 'auto',
     backgroundColor: red[500],
   },
 }));
@@ -49,40 +49,40 @@ export default function AddProfile() {
   const [profile, setProfile] = useContext(ProfileContext);
 
   const classes = useStyles();
-  const userCookie = cookies.get("userCookie");
+  const userCookie = cookies.get('userCookie');
   const name = userCookie.Name;
   const email = userCookie.Email;
   const errors = {};
 
   const tags = [
-    "DSC",
-    "DADC",
-    "Music Club",
-    "Press Club",
-    "Headrush",
-    "DTG",
-    "MSTC",
-    "SPC",
-    "CMC",
-    "HMC",
-    "Sports Comm",
-    "DCEI",
-    "ICT Comm",
-    "Acad Comm",
-    "Radio Club",
-    "Khelaiya Club",
-    "Synapse Comm",
-    "Cultural Comm",
-    "Debate Club",
-    "Research Club",
-    "Sambhav",
-    "Programming Club",
-    "Research Club",
-    "IEEE SB",
-    "EHC",
-    "Cubing Club",
-    "PMMC",
-    "Heritage club",
+    'DSC',
+    'DADC',
+    'Music Club',
+    'Press Club',
+    'Headrush',
+    'DTG',
+    'MSTC',
+    'SPC',
+    'CMC',
+    'HMC',
+    'Sports Comm',
+    'DCEI',
+    'ICT Comm',
+    'Acad Comm',
+    'Radio Club',
+    'Khelaiya Club',
+    'Synapse Comm',
+    'Cultural Comm',
+    'Debate Club',
+    'Research Club',
+    'Sambhav',
+    'Programming Club',
+    'Research Club',
+    'IEEE SB',
+    'EHC',
+    'Cubing Club',
+    'PMMC',
+    'Heritage club',
   ];
 
   //   const [ccn, setCcn] = useState(0);
@@ -90,20 +90,20 @@ export default function AddProfile() {
     <div>
       <Formik
         initialValues={{
-          email: "",
-          password: "",
-          name: "",
-          username: "",
+          email: '',
+          password: '',
+          name: '',
+          username: '',
           ccn: 0,
-          github: "",
-          linkedin: "",
-          instagram: "",
-          bio: "",
+          github: '',
+          linkedin: '',
+          instagram: '',
+          bio: '',
           tags: [],
         }}
         validate={(values) => {
           if (values.ccn < 0) errors.ccn = "Can't be negative";
-          if (values.ccn > 20) errors.ccn = "impossible";
+          if (values.ccn > 20) errors.ccn = 'impossible';
 
           return errors;
         }}
@@ -122,10 +122,10 @@ export default function AddProfile() {
             })
             .then(function (res) {
               console.log(res);
-              if (res.data == "username already taken") {
-                errors.username = "username already taken";
+              if (res.data == 'username already taken') {
+                errors.username = 'username already taken';
               }
-              if (res.data == "success") setProfile(true);
+              if (res.data == 'success') setProfile(true);
             })
             .catch(function (error) {
               console.log(error);
@@ -181,11 +181,11 @@ export default function AddProfile() {
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
-              />{" "}
-              <Typography style={{ color: "black" }}>
+              />{' '}
+              <Typography style={{ color: 'black' }}>
                 {errors.username && touched.username && errors.username}
               </Typography>
-              <Typography style={{ color: "black", marginTop: ".5rem" }}>
+              <Typography style={{ color: 'black', marginTop: '.5rem' }}>
                 Clubs/Committees
               </Typography>
               {/* <TextField
@@ -212,7 +212,7 @@ export default function AddProfile() {
                 name="tags"
                 onChange={(event, value) => {
                   console.log(value);
-                  setFieldValue("tags", value !== null ? value : values.tags);
+                  setFieldValue('tags', value !== null ? value : values.tags);
                 }}
                 onBlur={handleBlur}
                 multiple
@@ -281,7 +281,7 @@ export default function AddProfile() {
                 type="submit"
                 variant="contained"
                 color="primary"
-                style={{ marginTop: "1rem" }}
+                style={{ marginTop: '1rem' }}
               >
                 Update Profile
               </Button>

@@ -1,74 +1,64 @@
-import React, { useState, useEffect } from "react";
-import { Router, Redirect, Link } from "@reach/router";
-import { Formik } from "formik";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Router, Redirect, Link } from '@reach/router';
+import { Formik } from 'formik';
+import axios from 'axios';
 
-import queryString from "query-string";
+import queryString from 'query-string';
 
-import { makeStyles } from "@material-ui/styles";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import { Typography } from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import IconButton from "@material-ui/core/IconButton";
-import SendIcon from "@material-ui/icons/Send";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import { makeStyles } from '@material-ui/styles';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import { Typography } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Cookies } from 'react-cookie';
 
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import InputAdornment from "@material-ui/core/InputAdornment";
-
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-import { Cookies } from "react-cookie";
-
-// import Upload from "./components/Upload";
-
-import { CloudName, UploadPreset, ConnectServerUrl } from "./constants";
+import { CloudName, UploadPreset, ConnectServerUrl } from '../constants';
 
 const cookies = new Cookies();
-const email = cookies.get("userCookie").Email;
+const email = cookies.get('userCookie').Email;
 
 const useStyles = makeStyles(() => ({
   root: {
-    "& .MuiTextField-root": {
+    '& .MuiTextField-root': {
       // margin: theme.spacing(1),
-      color: "black",
+      color: 'black',
 
-      width: "auto",
+      width: 'auto',
     },
-    margin: "2rem",
+    margin: '2rem',
     // backgroundColor: "white",
-    padding: "3rem",
+    padding: '3rem',
   },
   card: {
     // position: "absolute",
-    marginTop: "0",
-    marginLeft: "1rem",
-    marginRight: "1rem",
-    paddingLeft: "2.5rem",
-    paddingRight: "2.5rem",
+    marginTop: '0',
+    marginLeft: '1rem',
+    marginRight: '1rem',
+    paddingLeft: '2.5rem',
+    paddingRight: '2.5rem',
     borderRadius: 12,
     maxWidth: 345,
-    Width: "auto",
+    Width: 'auto',
 
-    textAlign: "center",
+    textAlign: 'center',
   },
   avatar: {
     width: 60,
     height: 60,
-    margin: "auto",
+    margin: 'auto',
   },
   heading: {
-    fontSize: "1rem",
-    fontWeight: "bold",
-    letterSpacing: "0.5px",
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    letterSpacing: '0.5px',
     marginTop: 4,
     marginBottom: 7,
   },
@@ -78,12 +68,12 @@ const useStyles = makeStyles(() => ({
   },
   subheader: {
     fontSize: 14,
-    color: "black",
-    marginBottom: "0.875em",
+    color: 'black',
+    marginBottom: '0.875em',
   },
   statLabel: {
     fontSize: 12,
-    color: "black",
+    color: 'black',
     fontWeight: 500,
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -91,21 +81,20 @@ const useStyles = makeStyles(() => ({
   },
   statValue: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 4,
-    letterSpacing: "1px",
+    letterSpacing: '1px',
   },
   media: {
     height: 0,
-    paddingTop: "100%", // 16:9
+    paddingTop: '100%', // 16:9
   },
 }));
 
 const AddPostPage = () => {
-  const [Media, SetMedia] = useState("upload");
-  const [ImageUrl, SetImageUrl] = useState("");
-  const [VideoUrl, SetVideoUrl] = useState("");
-
+  const [Media, SetMedia] = useState('upload');
+  const [ImageUrl, SetImageUrl] = useState('');
+  const [VideoUrl, SetVideoUrl] = useState('');
   const styles = useStyles();
 
   const Video = (props) => {
@@ -146,24 +135,24 @@ const AddPostPage = () => {
         cropping: true,
         showSkipCropButton: false,
         croppingAspectRatio: 1,
-        folder: "daconnect",
-        clientAllowedFormats: ["png", "jpeg", "mp4", "mov", "heic"],
+        folder: 'daconnect',
+        clientAllowedFormats: ['png', 'jpeg', 'mp4', 'mov', 'heic'],
         maxFileSize: 7000000,
         maxImageFileSize: 3500000,
         maxVideoFileSize: 40000000,
         maxImageWidth: 2000,
         maxImageHeight: 2000,
-        sources: ["local", "instagram", "facebook"],
+        sources: ['local', 'instagram', 'facebook'],
       },
       (err, res) => {
         if (err) console.log(err);
-        if (res.event === "success") {
-          if (res.info.resource_type === "image") {
+        if (res.event === 'success') {
+          if (res.info.resource_type === 'image') {
             SetImageUrl(res.info.public_id);
-            SetMedia("image");
+            SetMedia('image');
           } else {
             SetVideoUrl(res.info.public_id);
-            SetMedia("video");
+            SetMedia('video');
           }
         }
       }
@@ -184,8 +173,8 @@ const AddPostPage = () => {
   }
 
   const AddPostMedia = () => {
-    if (Media === "image") return <UImage ImageUrl={ImageUrl} />;
-    else if (Media === "video") return <Video videoUrl={VideoUrl} />;
+    if (Media === 'image') return <UImage ImageUrl={ImageUrl} />;
+    else if (Media === 'video') return <Video videoUrl={VideoUrl} />;
     else
       return (
         <Upload
@@ -218,13 +207,13 @@ const AddPostPage = () => {
               <Divider light />
               <Formik
                 initialValues={{
-                  title: "",
-                  description: "",
+                  title: '',
+                  description: '',
                   tags: [],
                 }}
                 validate={(values) => {
                   const errors = {};
-                  if (values.title === "")
+                  if (values.title === '')
                     errors.title = "Title can't be blank";
 
                   return errors;
@@ -236,7 +225,7 @@ const AddPostPage = () => {
                         `${ConnectServerUrl}/addpost?` +
                           queryString.stringify({ email }),
                         {
-                          currentUserId: cookies.get("userDetails")._id,
+                          currentUserId: cookies.get('userDetails')._id,
                           title: values.title,
                           tags: values.tags,
                           description: values.description,
@@ -248,7 +237,7 @@ const AddPostPage = () => {
                       .then(function (res) {
                         console.log(res);
 
-                        if (res.data === "successfully added post")
+                        if (res.data === 'successfully added post')
                           setPostSuccess(true);
                       })
                       .catch(function (error) {
@@ -283,7 +272,7 @@ const AddPostPage = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      <Typography style={{ color: "black" }}>
+                      <Typography style={{ color: 'black' }}>
                         {errors.title && touched.title && errors.title}
                       </Typography>
                       <TextField
@@ -299,7 +288,7 @@ const AddPostPage = () => {
                         onBlur={handleBlur}
                       />
                       <Divider light />
-                      <Box display={"flex"}>
+                      <Box display={'flex'}>
                         <Autocomplete
                           className={styles.input}
                           fullWidth
@@ -312,7 +301,7 @@ const AddPostPage = () => {
                           onChange={(e, value) => {
                             console.log(value);
                             setFieldValue(
-                              "tags",
+                              'tags',
                               value !== null ? value : values.tags
                             );
                           }}
@@ -345,6 +334,6 @@ const AddPostPage = () => {
   );
 };
 
-const tags = ["Project", "Artwork", "Writings", "Music", "Dance", "Other"];
+const tags = ['Project', 'Artwork', 'Writings', 'Music', 'Dance', 'Other'];
 
 export default AddPostPage;

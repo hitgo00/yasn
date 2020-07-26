@@ -1,21 +1,21 @@
-import React from "react";
-import { Link } from "@reach/router";
-import Moment from "react-moment";
-import { red } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import React from 'react';
+import { Link } from '@reach/router';
+import Moment from 'react-moment';
+import { red } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 // import FolderIcon from "@material-ui/icons/Folder";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +47,7 @@ export default function Comment(props) {
                       {props.name
                         ? props.name[0]
                         : // + props.name.split(" ")[1][0]
-                          "X"}
+                          'X'}
                     </Avatar>
                   </Link>
                 ) : (
@@ -55,7 +55,7 @@ export default function Comment(props) {
                     {props.name
                       ? props.name[0]
                       : // + props.name.split(" ")[1][0]
-                        "X"}
+                        'X'}
                   </Avatar>
                 )}
                 {/* <Link to={`/${props.username}`}>
@@ -81,7 +81,6 @@ export default function Comment(props) {
                 </IconButton> */}
               </ListItemSecondaryAction>
             </ListItem>
-            {/* )} */}
           </List>
         </div>
       </Grid>

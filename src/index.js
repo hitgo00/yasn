@@ -1,30 +1,30 @@
-import React, { Suspense, lazy, useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import * as serviceWorker from "./serviceWorker";
-import "./index.css";
-import Loader from "./components/Loader";
-import { CookiesProvider, Cookies } from "react-cookie";
+import React, { Suspense, lazy, useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
+import './index.css';
+import Loader from './components/Loader';
+import { CookiesProvider, Cookies } from 'react-cookie';
 
-import ProfileContext from "./components/ProfileContext";
+import ProfileContext from './components/ProfileContext';
 
-const AuthenticatedApp = lazy(() => import("./App"));
-const UnauthenticatedApp = lazy(() => import("./SignIn"));
+const AuthenticatedApp = lazy(() => import('./App'));
+const UnauthenticatedApp = lazy(() => import('./Pages/SignIn'));
 const cookies = new Cookies();
 
-console.log(cookies.get("userCookie"));
+console.log(cookies.get('userCookie'));
 
 const Connect = () => {
   const profileHook = useState(true);
 
-  const userCookie = cookies.get("userCookie");
+  const userCookie = cookies.get('userCookie');
   const [emailDomain, setEmailDomain] = useState(
-    userCookie ? userCookie.Email.split("@")[1] : ""
+    userCookie ? userCookie.Email.split('@')[1] : ''
   );
 
   const [user, setUser] = useState(false);
 
   useEffect(() => {
-    if (emailDomain === "daiict.ac.in") setUser(true);
+    if (emailDomain === 'daiict.ac.in') setUser(true);
   }, [cookies]);
 
   return (
@@ -40,7 +40,7 @@ const Connect = () => {
   );
 };
 
-ReactDOM.render(<Connect />, document.getElementById("root"));
+ReactDOM.render(<Connect />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
