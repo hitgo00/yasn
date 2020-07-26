@@ -6,7 +6,7 @@
 ## CONNECT
  A YASN exclusively for students of DAIICT! 
  
- ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/v1589019590/Screenshot_2020-05-09_at_3.43.24_PM-min_jbw0af.png)![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_430,h_600,c_scale/v1589095090/IMG_4531-min_exllv9.jpg)         ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_430,h_600,c_scale/v1589095090/IMG_4528-min_z7jkit.jpg)![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_430,h_600,c_scale/v1589095090/IMG_4530-min_mqb8kf.jpg)  ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_430,h_600,c_scale/v1589095090/IMG_4529-min_r5kuim.jpg)
+ ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/v1589019590/Screenshot_2020-05-09_at_3.43.24_PM-min_jbw0af.png)![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_400,h_600,c_scale/v1589095090/IMG_4531-min_exllv9.jpg)         ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_400,h_600,c_scale/v1589095090/IMG_4528-min_z7jkit.jpg)![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_400,h_600,c_scale/v1589095090/IMG_4530-min_mqb8kf.jpg)  ![Screenshots](https://res.cloudinary.com/hitgo/image/upload/w_400,h_600,c_scale/v1589095090/IMG_4529-min_r5kuim.jpg)
 
 
 ## Development
