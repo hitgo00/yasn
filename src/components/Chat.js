@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import { useStoreState, useStoreActions } from 'easy-peasy';
@@ -27,6 +27,16 @@ const Chat = () => {
   const { messageData, socket, nickname } = useStoreState((state) => state);
   const setMessageData = useStoreActions((actions) => actions.setMessageData);
   const messages = messageData || [];
+  const messageList = useRef(null);
+
+  const scrollToBottom = () => {
+    messageList.current.scrollIntoView(false);
+  };
+
+  //Scroll to bottom on initial load
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
 
   // Recieve effect
   useEffect(() => {
@@ -51,12 +61,7 @@ const Chat = () => {
         <sub>powered by Darkrai</sub>
       </div>
       <br />
-      <div
-        className="message-list"
-        style={{
-          height,
-        }}
-      >
+      <div ref={messageList} className="message-list">
         {messages.map((c, i) => {
           if (nickname === c.username)
             return <Message key={i} by={c.username} content={c.message} user />;

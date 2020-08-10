@@ -1,7 +1,8 @@
 .Chat-wrapper {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   color: white;
+  text-align: center;
 
   div {
     margin: 10px;
@@ -23,7 +24,7 @@
   }
 
   .send-form {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     position: relative;
     bottom: 0;
   }
