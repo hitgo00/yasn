@@ -1,69 +1,70 @@
-import React, { useState, useEffect } from "react";
-import Moment from "react-moment";
-import { Link } from "@reach/router";
-import axios from "axios";
-import queryString from "query-string";
+import React, { useState, useEffect } from 'react';
+import Moment from 'react-moment';
+import { Link } from '@reach/router';
+import axios from 'axios';
+import queryString from 'query-string';
+import Linkify from 'react-linkify';
 
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import CommentIcon from "@material-ui/icons/Comment";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ToggleButton from "@material-ui/lab/ToggleButton";
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import CommentIcon from '@material-ui/icons/Comment';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 
-import AddComment from "./AddComment";
-import Comment from "./Comment";
+import AddComment from './AddComment';
+import Comment from './Comment';
 
-import { CloudName, UploadPreset, ConnectServerUrl } from "../constants";
+import { CloudName, UploadPreset, ConnectServerUrl } from '../constants';
 
-import { Cookies } from "react-cookie";
-import "./PostCard.scss";
+import { Cookies } from 'react-cookie';
+import './PostCard.scss';
 
 const cookies = new Cookies();
-const email = cookies.get("userCookie").Email;
+const email = cookies.get('userCookie').Email;
 let name, userId, username;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: "28vw",
+    minWidth: '28vw',
     maxWidth: 400,
-    Width: "89vw",
-    [theme.breakpoints.down("sm")]: {
-      minWidth: "88vw",
+    Width: '89vw',
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '88vw',
 
       // width: "auto",
     },
 
     marginTop: 20,
     // margin: "1rem",
-    align: "center",
+    align: 'center',
   },
   media: {
     height: 0,
-    paddingBottom: "55.25%", // 16:9
-    paddingTop: "42.25%", // 16:9
+    paddingBottom: '55.25%', // 16:9
+    paddingTop: '42.25%', // 16:9
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: "rotate(180deg)",
+    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
@@ -82,10 +83,10 @@ export default function PostCard(props) {
   };
 
   useEffect(() => {
-    if (cookies.get("userDetails")) {
-      name = cookies.get("userDetails").name;
-      userId = cookies.get("userDetails")._id;
-      username = cookies.get("userDetails").username;
+    if (cookies.get('userDetails')) {
+      name = cookies.get('userDetails').name;
+      userId = cookies.get('userDetails')._id;
+      username = cookies.get('userDetails').username;
     }
     if (props.likes.likers.find((e) => e === userId)) setSelected(true);
   }, []);
@@ -98,7 +99,7 @@ export default function PostCard(props) {
         `${ConnectServerUrl}/handlelike?` +
           queryString.stringify({ _id: props._id }),
         {
-          currentUserId: cookies.get("userDetails")._id,
+          currentUserId: cookies.get('userDetails')._id,
           email,
           liked,
           //liked is true if user like , false if unliked ;
@@ -122,7 +123,7 @@ export default function PostCard(props) {
                 : // + props.Name.split(" ")[1][0]
                 props.Name
                 ? props.Name
-                : "X"}
+                : 'X'}
             </Avatar>
           </Link>
         }
@@ -165,12 +166,19 @@ export default function PostCard(props) {
       )}
 
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.description ? props.description : ""}
+        <Typography
+          className="desc"
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
+          <Linkify properties={{ target: '_blank' }}>
+            {props.description ? props.description : ''}
+          </Linkify>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Box display={"flex"}>
+        <Box display={'flex'}>
           <Box>
             <ToggleButton
               value="like"
@@ -194,17 +202,17 @@ export default function PostCard(props) {
           <span> </span>
           {`   `}
           <Box l={3} p={1} b={4}>
-            <Typography style={{ fontSize: "1.15rem" }}>
-              {" "}
+            <Typography style={{ fontSize: '1.15rem' }}>
+              {' '}
               {likeCount}
             </Typography>
           </Box>
-          <Box display={"flex"}>
+          <Box display={'flex'}>
             <IconButton aria-label="share">
               <CommentIcon />
             </IconButton>
-            <Typography style={{ fontSize: "1.15rem", marginTop: ".5rem" }}>
-              {" "}
+            <Typography style={{ fontSize: '1.15rem', marginTop: '.5rem' }}>
+              {' '}
               {props.comments.length}
             </Typography>
           </Box>
