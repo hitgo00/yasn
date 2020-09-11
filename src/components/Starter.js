@@ -96,7 +96,7 @@ const Starter = () => {
         )}
       </Formik>
       <br />
-      {loading ? <span>Might take a few seconds...</span> : null}
+      {loading ? <span>Darkrai Server down temporarily 😔</span> : null}
     </div>
   );
 };
