@@ -1,5 +1,6 @@
 # Yet Another Social network
  A simple social media application with users, posts, likes and comments - developed using React, Node, Express and MongoDB.
+ To get more insights, read [this](https://medium.com/code-dementia/building-a-social-network-using-mern-stack-85037914b944) article.
  
  You can find the repository for the Connect(YASN) server [here](https://github.com/hitgo00/yasn-server) and the Darkrai(Chat) server [here.](https://github.com/darkraichat/darkrai-server)
 
