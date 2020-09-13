@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ProfileCard from '../components/ProfileCard';
-import PostCard from '../components/PostCard';
+import ProfileCard from '../../components/ProfileCard';
+import PostCard from '../../components/PostCard';
 import LazyLoad from 'react-lazyload';
 import { Cookies } from 'react-cookie';
 import axios from 'axios';
 import queryString from 'query-string';
-import { ConnectServerUrl } from '../constants';
-import Loader from '../components/Loader';
+import { ConnectServerUrl } from '../../utils/constants';
+import Loader from '../../components/Loader';
 
 const cookies = new Cookies();
 const email = cookies.get('userCookie').Email;
@@ -39,7 +39,6 @@ export default function ProfilePage(props) {
             queryString.stringify({ email }, { withCredentials: true })
         )
         .then((res) => {
-          console.log(res.data[0]);
           SetUserDetails(res.data[0]);
           setLoading(false);
         })

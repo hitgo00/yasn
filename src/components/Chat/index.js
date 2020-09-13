@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
-import './Chat.scss';
+import './styles.scss';
 
 const Message = ({ by, content, user }) => (
   <span

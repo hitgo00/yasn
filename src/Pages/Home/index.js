@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
-import { ConnectServerUrl } from '../constants';
-import PostCard from '../components/PostCard';
+import { ConnectServerUrl } from '../../utils/constants';
+import PostCard from '../../components/PostCard';
 import LazyLoad from 'react-lazyload';
-import Loader from '../components/Loader';
+import Loader from '../../components/Loader';
 
 const HomePage = (props) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +18,6 @@ const HomePage = (props) => {
           queryString.stringify({ tag: browseTag }, { withCredentials: true })
       )
       .then((res) => {
-        console.log(res.data);
         SetPosts(res.data);
         setLoading(false);
       })

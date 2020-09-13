@@ -1,23 +1,23 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
-import './App.css';
-import NavAppBar from './components/NavAppBar';
+import './styles.css';
+import NavAppBar from '../components/NavAppBar/NavAppBar';
 
 import { Router } from '@reach/router';
-import HomePage from './Pages/HomePage';
+import HomePage from '../Pages/Home';
 import { StoreProvider } from 'easy-peasy';
 
-import ProfilePage from './Pages/ProfilePage';
-import AddPostPage from './Pages/AddPostPage';
-import SignIn from './Pages/SignIn';
-import AddProfile from './Pages/AddProfile';
+import ProfilePage from '../Pages/Profile';
+import AddPostPage from '../Pages/AddPost';
+import SignIn from '../Pages/SignIn';
+import AddProfile from '../Pages/AddProfile';
 
-import ChatApp from './Pages/ChatApp';
-import { store } from './store';
-import { ConnectServerUrl } from './constants';
+import ChatApp from '../Pages/ChatApp';
+import { store } from '../store';
+import { ConnectServerUrl } from '../utils/constants';
 import queryString from 'query-string';
 import { Cookies, useCookies } from 'react-cookie';
-import ProfileContext from './components/ProfileContext';
+import ProfileContext from '../components/ProfileContext';
 
 const cookies = new Cookies();
 function App() {
@@ -33,7 +33,6 @@ function App() {
           queryString.stringify({ email: userEmail }, { withCredentials: true })
       )
       .then((res) => {
-        console.log(res.data[0]);
         cookies.set('userDetails', res.data[0]);
         if (!res.data) setProfile(false);
       });

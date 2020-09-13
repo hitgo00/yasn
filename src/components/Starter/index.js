@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback, useState } from 'react';
+import './styles.scss';
 import openSocket from 'socket.io-client';
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import queryString from 'query-string';
 import { useStoreState, useStoreActions } from 'easy-peasy';
-
-import { serverUrl } from '../constants';
-import './Starter.scss';
+import { serverUrl } from '../../utils/constants';
 
 const Starter = () => {
   const url = 'Da-Connect';

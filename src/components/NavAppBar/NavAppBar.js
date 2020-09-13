@@ -1,150 +1,42 @@
-import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
-import MailIcon from "@material-ui/icons/Mail";
-import CallSplitIcon from "@material-ui/icons/CallSplit";
-// import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
-// import PropTypes from "prop-types";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import CreateIcon from "@material-ui/icons/Create";
-import GestureIcon from "@material-ui/icons/Gesture";
-import MusicNoteIcon from "@material-ui/icons/MusicNote";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import PostAddIcon from "@material-ui/icons/PostAdd";
-
-import { useTheme } from "@material-ui/core/styles";
-
-import DonutSmallIcon from "@material-ui/icons/DonutSmall";
-
-import { Link, Redirect } from "@reach/router";
-
-import { Cookies } from "react-cookie";
+import React from 'react';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+  Badge,
+  MenuItem,
+  Menu,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import CallSplitIcon from '@material-ui/icons/CallSplit';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import CreateIcon from '@material-ui/icons/Create';
+import GestureIcon from '@material-ui/icons/Gesture';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import DonutSmallIcon from '@material-ui/icons/DonutSmall';
+import { Link } from '@reach/router';
+import { Cookies } from 'react-cookie';
+import { useStyles } from './styles';
+import { useTheme } from '@material-ui/core/styles';
 
 const cookies = new Cookies();
-const email = cookies.get("userCookie").Email;
-
-const drawerWidth = 200;
-
-const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-    marginBottom: "4rem",
-  },
-
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-    color: "white",
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
-  root: {
-    display: "flex",
-  },
-  drawer: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
-  },
-  link: {
-    color: "#292a36",
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    marginTop: "2em",
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
 
 export default function NavAppBar(props) {
   const classes = useStyles();
@@ -179,19 +71,19 @@ export default function NavAppBar(props) {
 
   const handleLogOut = () => {
     setMobileMoreAnchorEl(null);
-    cookies.remove("userCookie");
-    cookies.remove("userDetails");
+    cookies.remove('userCookie');
+    cookies.remove('userDetails');
     window.location.reload();
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -204,21 +96,21 @@ export default function NavAppBar(props) {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <Link to="/chat" className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={"ßeta"} color="secondary">
+            <Badge badgeContent={'ßeta'} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -275,33 +167,33 @@ export default function NavAppBar(props) {
       <List>
         {/* <Link to="/home/Project"> */}
         <a href="/home/Project">
-          <ListItem button key={"Projects"}>
+          <ListItem button key={'Projects'}>
             <ListItemIcon>
               <GitHubIcon />
             </ListItemIcon>
-            <ListItemText primary={"Projects"} />
+            <ListItemText primary={'Projects'} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Writings"> */}
         <a href="/home/Writings">
-          <ListItem button key={"Writings"}>
+          <ListItem button key={'Writings'}>
             <ListItemIcon>
               <CreateIcon />
             </ListItemIcon>
-            <ListItemText primary={"Writings"} />
+            <ListItemText primary={'Writings'} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Artwork" onClick={handleTagLink}> */}
         <a href="/home/Artwork">
-          <ListItem button key={"Artwork"}>
+          <ListItem button key={'Artwork'}>
             <ListItemIcon>
               <GestureIcon />
             </ListItemIcon>
-            <ListItemText primary={"Artwork"} />
+            <ListItemText primary={'Artwork'} />
           </ListItem>
         </a>
         {/* </Link> */}
@@ -311,33 +203,33 @@ export default function NavAppBar(props) {
       <List>
         {/* <Link to="/home/Music"> */}
         <a href="/home/Music">
-          <ListItem button key={"Music"}>
+          <ListItem button key={'Music'}>
             <ListItemIcon>
               <MusicNoteIcon />
             </ListItemIcon>
-            <ListItemText primary={"Music"} />
+            <ListItemText primary={'Music'} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Dance"> */}
         <a href="/home/Dance">
-          <ListItem button key={"Dance"}>
+          <ListItem button key={'Dance'}>
             <ListItemIcon>
               <DirectionsWalkIcon />
             </ListItemIcon>
-            <ListItemText primary={"Dance"} />
+            <ListItemText primary={'Dance'} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Other"> */}
         <a href="/home/Other">
-          <ListItem button key={"Other"}>
+          <ListItem button key={'Other'}>
             <ListItemIcon>
               <CallSplitIcon />
             </ListItemIcon>
-            <ListItemText primary={"Other"} />
+            <ListItemText primary={'Other'} />
           </ListItem>
         </a>
         {/* </Link> */}
@@ -381,14 +273,14 @@ export default function NavAppBar(props) {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
-                inputProps={{ "aria-label": "search" }}
+                inputProps={{ 'aria-label': 'search' }}
               />
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <Link to="/chat">
                 <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={"ßeta"} color="secondary">
+                  <Badge badgeContent={'ßeta'} color="secondary">
                     <MailIcon />
                   </Badge>
                 </IconButton>
@@ -436,7 +328,7 @@ export default function NavAppBar(props) {
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{

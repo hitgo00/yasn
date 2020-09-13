@@ -2,15 +2,15 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import axios from 'axios';
-import { ConnectServerUrl } from '../constants';
-import IconButton from '@material-ui/core/IconButton';
+import { ConnectServerUrl } from '../utils/constants';
+import {
+  IconButton,
+  InputLabel,
+  Input,
+  FormControl,
+  InputAdornment,
+} from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { Cookies } from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +43,6 @@ export default function InputWithIcon(props) {
                   name: props.name,
                 })
                 .then(function (res) {
-                  console.log(res);
-
                   if (res.data === 'success') {
                     console.log('comment added!');
                     window.location.reload();
@@ -54,18 +52,9 @@ export default function InputWithIcon(props) {
                   console.log(error);
                 });
             }
-
-            console.log(JSON.stringify(values));
-            //   setSubmitting(false);
           }}
         >
-          {({
-            values,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            /* and other goodies */
-          }) => (
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
             <form onSubmit={handleSubmit} className={classes.root}>
               <FormControl fullWidth className={classes.margin}>
                 <InputLabel htmlFor="standard-adornment-amount">

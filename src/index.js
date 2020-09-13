@@ -11,8 +11,6 @@ const AuthenticatedApp = lazy(() => import('./App'));
 const UnauthenticatedApp = lazy(() => import('./Pages/SignIn'));
 const cookies = new Cookies();
 
-console.log(cookies.get('userCookie'));
-
 const Connect = () => {
   const profileHook = useState(true);
 

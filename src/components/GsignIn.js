@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { GoogleClientId } from '../constants';
+import { GoogleClientId } from '../utils/constants';
 import { useCookies, withCookies } from 'react-cookie';
 
 export default function GsignIn(props) {
@@ -10,23 +10,15 @@ export default function GsignIn(props) {
 
   useEffect(() => {
     googleSDK();
-    console.log('sfsfd');
   });
 
   const prepareLoginButton = () => {
-    console.log(googleLoginBtn.current);
-
     auth2.attachClickHandler(
       googleLoginBtn.current,
 
       {},
       (googleUser) => {
         let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
 
         let AuthCookie = {
           Token: googleUser.getAuthResponse().id_token,

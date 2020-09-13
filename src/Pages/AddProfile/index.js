@@ -1,49 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import axios from 'axios';
-import { ConnectServerUrl } from '../constants';
-
-import TextField from '@material-ui/core/TextField';
-import Avatar from '@material-ui/core/Avatar';
-import { red } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { ConnectServerUrl } from '../../utils/constants';
+import { TextField, Typography, Button } from '@material-ui/core';
+import { useStyles } from './styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import ProfileContext from '../components/ProfileContext';
 
+import ProfileContext from '../../components/ProfileContext';
+import { tags } from './constants';
 import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      color: 'black',
-
-      width: 'auto',
-    },
-    margin: '2rem',
-    backgroundColor: 'white',
-    padding: '3rem',
-  },
-  heading: {
-    color: 'black',
-    fontSize: '1.5rem',
-  },
-  input: {
-    width: 'auto',
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    margin: 'auto',
-    backgroundColor: red[500],
-  },
-}));
 
 export default function AddProfile() {
   const [profile, setProfile] = useContext(ProfileContext);
@@ -54,38 +21,6 @@ export default function AddProfile() {
   const email = userCookie.Email;
   const errors = {};
 
-  const tags = [
-    'DSC',
-    'DADC',
-    'Music Club',
-    'Press Club',
-    'Headrush',
-    'DTG',
-    'MSTC',
-    'SPC',
-    'CMC',
-    'HMC',
-    'Sports Comm',
-    'DCEI',
-    'ICT Comm',
-    'Acad Comm',
-    'Radio Club',
-    'Khelaiya Club',
-    'Synapse Comm',
-    'Cultural Comm',
-    'Debate Club',
-    'Research Club',
-    'Sambhav',
-    'Programming Club',
-    'Research Club',
-    'IEEE SB',
-    'EHC',
-    'Cubing Club',
-    'PMMC',
-    'Heritage club',
-  ];
-
-  //   const [ccn, setCcn] = useState(0);
   return (
     <div>
       <Formik
@@ -143,8 +78,6 @@ export default function AddProfile() {
           handleBlur,
           handleSubmit,
           setFieldValue,
-
-          /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit} className={classes.root}>
             <Typography className={classes.heading}>
@@ -188,30 +121,10 @@ export default function AddProfile() {
               <Typography style={{ color: 'black', marginTop: '.5rem' }}>
                 Clubs/Committees
               </Typography>
-              {/* <TextField
-                style={{ width: "4rem" }}
-                size="small"
-                type="number"
-                min="0"
-                max="10"
-                name="ccn"
-                value={values.ccn}
-                id="filled-basic"
-                variant="filled"
-                onChange={
-                  handleChange
-                  // (event) => setCcn(event.target.value)
-                }
-                onBlur={handleBlur}
-              />
-              <Typography style={{ color: "black" }}>
-                {errors.ccn && touched.ccn && errors.ccn}
-              </Typography> */}
               <Autocomplete
                 className={classes.input}
                 name="tags"
                 onChange={(event, value) => {
-                  console.log(value);
                   setFieldValue('tags', value !== null ? value : values.tags);
                 }}
                 onBlur={handleBlur}
@@ -286,25 +199,6 @@ export default function AddProfile() {
                 Update Profile
               </Button>
             </div>
-            {/* <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button> */}
           </form>
         )}
       </Formik>
