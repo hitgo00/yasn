@@ -5,7 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import queryString from 'query-string';
 import { useStoreState, useStoreActions } from 'easy-peasy';
-import { serverUrl } from '../../utils/constants';
+import { ConnectServerUrl } from '../../utils/constants';
 
 const Starter = () => {
   const url = 'Da-Connect';
@@ -15,7 +15,7 @@ const Starter = () => {
   );
   const nickname = useStoreState((state) => state.nickname);
   const login = useCallback((username) => {
-    let socket = openSocket(serverUrl);
+    let socket = openSocket(ConnectServerUrl);
 
     if (socket) {
       setSocket(socket);
@@ -28,7 +28,7 @@ const Starter = () => {
 
       axios
         .get(
-          `${serverUrl}/login?` +
+          `${ConnectServerUrl}/darkrai/login?` +
             queryString.stringify({ website: 'Da-Connect' })
         )
         .then((res) => {
@@ -95,7 +95,7 @@ const Starter = () => {
         )}
       </Formik>
       <br />
-      {loading ? <span>Darkrai Server down temporarily 😔</span> : null}
+      {loading ? <span>Loading...</span> : null}
     </div>
   );
 };

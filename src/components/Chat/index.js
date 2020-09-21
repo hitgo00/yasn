@@ -76,6 +76,7 @@ const Chat = () => {
           onSubmit={(values, actions) => {
             socket.emit('send_message', {
               message: values.message,
+              website: 'Da-Connect',
             });
             actions.resetForm();
           }}
