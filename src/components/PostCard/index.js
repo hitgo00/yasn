@@ -31,10 +31,11 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import AddComment from '../AddComment';
 import Comment from '../Comment';
 import { CloudName, ConnectServerUrl } from '../../utils/constants';
-import { Cookies } from 'react-cookie';
 
+import { Cookies } from 'react-cookie';
 const cookies = new Cookies();
 const email = cookies.get('userCookie').Email;
+const googleToken = cookies.get('userCookie').Token;
 let name, userId, username;
 
 export default function PostCard(props) {
@@ -63,7 +64,7 @@ export default function PostCard(props) {
     axios
       .post(
         `${ConnectServerUrl}/handlelike?` +
-          queryString.stringify({ _id: props._id }),
+          queryString.stringify({ _id: props._id, email, googleToken }),
         {
           currentUserId: cookies.get('userDetails')._id,
           email,

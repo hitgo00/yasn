@@ -23,6 +23,7 @@ const cookies = new Cookies();
 function App() {
   const userCookie = cookies.get('userCookie');
   const userEmail = userCookie.Email;
+  const googleToken = userCookie.Token;
 
   const [profile, setProfile] = useContext(ProfileContext);
 
@@ -30,7 +31,10 @@ function App() {
     axios
       .get(
         `${ConnectServerUrl}/checkprofile?` +
-          queryString.stringify({ email: userEmail }, { withCredentials: true })
+          queryString.stringify(
+            { email: userEmail, googleToken },
+            { withCredentials: true }
+          )
       )
       .then((res) => {
         cookies.set('userDetails', res.data[0]);
@@ -53,6 +57,7 @@ function App() {
                   <ProfilePage path="/:username" />
                   <AddPostPage path="/add" />
                   <SignIn path="/signin" />
+                  <HomePage path="*" />
                 </Router>
               </StoreProvider>
             </NavAppBar>

@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import axios from 'axios';
+import queryString from 'query-string';
 import { ConnectServerUrl } from '../utils/constants';
 import {
   IconButton,
@@ -11,6 +12,8 @@ import {
   InputAdornment,
 } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
+
+import { Cookies } from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InputWithIcon(props) {
   const classes = useStyles();
+  const cookies = new Cookies();
+  const email = cookies.get('userCookie').Email;
+  const googleToken = cookies.get('userCookie').Token;
 
   return (
     <div>
@@ -35,13 +41,20 @@ export default function InputWithIcon(props) {
           onSubmit={async (values) => {
             if (values.comment && props.userId) {
               axios
-                .post(`${ConnectServerUrl}/addcomment`, {
-                  comment: values.comment,
-                  postId: props.postId,
-                  username: props.username,
-                  userId: props.userId,
-                  name: props.name,
-                })
+                .post(
+                  `${ConnectServerUrl}/addcomment?` +
+                    queryString.stringify(
+                      { googleToken, email },
+                      { withCredentials: true }
+                    ),
+                  {
+                    comment: values.comment,
+                    postId: props.postId,
+                    username: props.username,
+                    userId: props.userId,
+                    name: props.name,
+                  }
+                )
                 .then(function (res) {
                   if (res.data === 'success') {
                     console.log('comment added!');

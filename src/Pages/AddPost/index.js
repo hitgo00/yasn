@@ -29,6 +29,7 @@ import {
 
 const cookies = new Cookies();
 const email = cookies.get('userCookie').Email;
+const googleToken = cookies.get('userCookie').Token;
 
 const AddPostPage = () => {
   const [Media, SetMedia] = useState('upload');
@@ -161,7 +162,7 @@ const AddPostPage = () => {
                     axios
                       .post(
                         `${ConnectServerUrl}/addpost?` +
-                          queryString.stringify({ email }),
+                          queryString.stringify({ email, googleToken }),
                         {
                           currentUserId: cookies.get('userDetails')._id,
                           title: values.title,

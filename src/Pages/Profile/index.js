@@ -10,6 +10,7 @@ import Loader from '../../components/Loader';
 
 const cookies = new Cookies();
 const email = cookies.get('userCookie').Email;
+const googleToken = cookies.get('userCookie').Token;
 
 export default function ProfilePage(props) {
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ export default function ProfilePage(props) {
         .get(
           `${ConnectServerUrl}/username?` +
             queryString.stringify(
-              { username: props.username },
+              { username: props.username, googleToken, email },
               { withCredentials: true }
             )
         )
@@ -36,7 +37,10 @@ export default function ProfilePage(props) {
       axios
         .get(
           `${ConnectServerUrl}/profile?` +
-            queryString.stringify({ email }, { withCredentials: true })
+            queryString.stringify(
+              { email, googleToken },
+              { withCredentials: true }
+            )
         )
         .then((res) => {
           SetUserDetails(res.data[0]);

@@ -2,12 +2,17 @@ import React, { useEffect, useCallback, useState } from 'react';
 import './styles.scss';
 import openSocket from 'socket.io-client';
 import { Formik, Form, Field } from 'formik';
+import { Cookies } from 'react-cookie';
 import axios from 'axios';
 import queryString from 'query-string';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import { ConnectServerUrl } from '../../utils/constants';
 
+const cookies = new Cookies();
 const Starter = () => {
+  const userCookie = cookies.get('userCookie');
+  const email = userCookie.Email;
+  const googleToken = userCookie.Token;
   const url = 'Da-Connect';
   const [loading, setLoading] = useState(false);
   const { setChat, setMessageData, setSocket, setNickname } = useStoreActions(
@@ -29,7 +34,7 @@ const Starter = () => {
       axios
         .get(
           `${ConnectServerUrl}/darkrai/login?` +
-            queryString.stringify({ website: 'Da-Connect' })
+            queryString.stringify({ website: 'Da-Connect', googleToken, email })
         )
         .then((res) => {
           setMessageData(res.data);

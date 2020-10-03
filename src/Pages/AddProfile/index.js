@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import axios from 'axios';
+import queryString from 'query-string';
+
 import { ConnectServerUrl } from '../../utils/constants';
 import { TextField, Typography, Button } from '@material-ui/core';
 import { useStyles } from './styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
 import ProfileContext from '../../components/ProfileContext';
 import { tags } from './constants';
 import { Cookies } from 'react-cookie';
@@ -17,8 +18,8 @@ export default function AddProfile() {
 
   const classes = useStyles();
   const userCookie = cookies.get('userCookie');
-  const name = userCookie.Name;
   const email = userCookie.Email;
+  const googleToken = userCookie.Token;
   const errors = {};
 
   return (
@@ -44,17 +45,21 @@ export default function AddProfile() {
         }}
         onSubmit={async (values) => {
           axios
-            .post(`${ConnectServerUrl}/adduser`, {
-              name: values.name,
-              email,
-              username: values.username,
-              clubsNumber: values.ccn,
-              bio: values.bio,
-              gitHubUrl: values.github,
-              linkedInUrl: values.linkedin,
-              instaUrl: values.instagram,
-              tags: values.tags,
-            })
+            .post(
+              `${ConnectServerUrl}/adduser?` +
+                queryString.stringify({ email, googleToken }),
+              {
+                name: values.name,
+                email,
+                username: values.username,
+                clubsNumber: values.ccn,
+                bio: values.bio,
+                gitHubUrl: values.github,
+                linkedInUrl: values.linkedin,
+                instaUrl: values.instagram,
+                tags: values.tags,
+              }
+            )
             .then(function (res) {
               console.log(res);
               if (res.data == 'username already taken') {

@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
+import { Cookies } from 'react-cookie';
 import { ConnectServerUrl } from '../../utils/constants';
 import PostCard from '../../components/PostCard';
 import LazyLoad from 'react-lazyload';
 import Loader from '../../components/Loader';
 
+const cookies = new Cookies();
 const HomePage = (props) => {
+  const userCookie = cookies.get('userCookie');
+  const googleToken = userCookie.Token;
+  const email = userCookie.Email;
+
   const [loading, setLoading] = useState(true);
   const [browseTag, SetBrowseTag] = useState(props.tag);
   const [posts, SetPosts] = useState();
@@ -15,7 +21,10 @@ const HomePage = (props) => {
     axios
       .get(
         `${ConnectServerUrl}/home?` +
-          queryString.stringify({ tag: browseTag }, { withCredentials: true })
+          queryString.stringify(
+            { tag: browseTag, googleToken, email },
+            { withCredentials: true }
+          )
       )
       .then((res) => {
         SetPosts(res.data);
