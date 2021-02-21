@@ -145,12 +145,10 @@ export default function PostCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Box display={'flex'}>
-          <Box>
-            <ToggleButton
-              value="like"
-              selected={selected}
-              onChange={() => {
+        <Box alignItems="center" display={'flex'}>
+            <IconButton
+              style= {{paddingRight:0}}
+              onClick={() => {
                 handleLike(selected);
                 selected
                   ? setLikeCount(likeCount - 1)
@@ -159,18 +157,13 @@ export default function PostCard(props) {
               }}
             >
               {selected ? (
-                <FavoriteIcon fontSize="small" color="secondary" />
+                <FavoriteIcon color="secondary" />
               ) : (
-                <FavoriteIcon fontSize="small" />
+                <FavoriteIcon />
               )}
-            </ToggleButton>
-          </Box>
-          {`   `}
-          <span> </span>
-          {`   `}
+            </IconButton>
           <Box l={3} p={1} b={4}>
             <Typography style={{ fontSize: '1.15rem' }}>
-              {' '}
               {likeCount}
             </Typography>
           </Box>
