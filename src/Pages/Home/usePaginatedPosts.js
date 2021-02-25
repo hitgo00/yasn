@@ -30,14 +30,10 @@ export default function usePaginatedPosts({
         setPosts((prevPosts) => {
           return prevPosts.concat(res.data.posts);
         });
-        // const mergedPosts = posts.concat(res.data.posts);
-        // setPosts(mergedPosts);
         if (Number(res.data.page) * LIMIT <= res.data.total) {
-          console.log("moree incomminng");
           setHasMore(true);
           console.log(Number(res.data.page) + 1);
         } else {
-          console.log("enddd");
           setHasMore(false);
         }
         setFetching(false);

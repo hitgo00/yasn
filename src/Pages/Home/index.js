@@ -3,14 +3,15 @@ import { Cookies } from "react-cookie";
 import PostCard from "../../components/PostCard";
 import LazyLoad from "react-lazyload";
 import Loader from "../../components/Loader";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import usePaginatedPosts from "./usePaginatedPosts";
 
 const cookies = new Cookies();
 
 const options = {
   root: null,
-  rootMargin: "35px",
-  threshold: 0.1,
+  rootMargin: "100px",
+  threshold: 1.0,
 };
 
 const HomePage = (props) => {
@@ -47,10 +48,12 @@ const HomePage = (props) => {
       {posts
         ? posts.map((post, index) => {
             if (posts.length === index + 1) {
-              console.log("last");
               return (
                 <div ref={lastElementRef} key={post._id}>
                   <PostCard {...post} key={post._id} />
+                  {hasMore && (
+                    <CircularProgress style={{ marginTop: "14px" }} />
+                  )}
                 </div>
               );
             }
