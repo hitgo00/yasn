@@ -1,52 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import queryString from 'query-string';
-import { Cookies } from 'react-cookie';
-import { ConnectServerUrl } from '../../utils/constants';
-import PostCard from '../../components/PostCard';
-import LazyLoad from 'react-lazyload';
-import Loader from '../../components/Loader';
+import React, { useState, useRef, useCallback } from "react";
+import { Cookies } from "react-cookie";
+import PostCard from "../../components/PostCard";
+import LazyLoad from "react-lazyload";
+import Loader from "../../components/Loader";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import usePaginatedPosts from "./usePaginatedPosts";
 
 const cookies = new Cookies();
+
+const options = {
+  root: null,
+  rootMargin: "100px",
+  threshold: 1.0,
+};
+
 const HomePage = (props) => {
-  const userCookie = cookies.get('userCookie');
+  const userCookie = cookies.get("userCookie");
   const googleToken = userCookie.Token;
   const email = userCookie.Email;
+  const [pageToFetch, setPageToFetch] = useState(1);
 
-  const [loading, setLoading] = useState(true);
-  const [browseTag, SetBrowseTag] = useState(props.tag);
-  const [posts, SetPosts] = useState();
+  const { fetching, hasMore, posts } = usePaginatedPosts({
+    googleToken,
+    email,
+    tag: props.browseTag,
+    pageToFetch,
+  });
 
-  useEffect(() => {
-    axios
-      .get(
-        `${ConnectServerUrl}/home?` +
-          queryString.stringify(
-            { tag: browseTag, googleToken, email },
-            { withCredentials: true }
-          )
-      )
-      .then((res) => {
-        SetPosts(res.data);
-        setLoading(false);
-      })
+  const observer = useRef();
 
-      .catch((err) => console.log(err));
-  }, []);
+  const lastElementRef = useCallback(
+    (node) => {
+      if (fetching) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageToFetch((pageToFetch) => pageToFetch + 1);
+        }
+      }, options);
+      if (node) observer.current.observe(node);
+    },
+    [fetching, hasMore]
+  );
 
   return (
     <div>
-      {!loading ? (
-        posts ? (
-          posts.map((post) => (
-            <LazyLoad height={200} offset={0} key={post._id}>
-              <PostCard {...post} key={post._id} />{' '}
-            </LazyLoad>
-          ))
-        ) : null
-      ) : (
-        <Loader />
-      )}
+      {posts
+        ? posts.map((post, index) => {
+            if (posts.length === index + 1) {
+              return (
+                <div ref={lastElementRef} key={post._id}>
+                  <PostCard {...post} key={post._id} />
+                  {hasMore && (
+                    <CircularProgress style={{ marginTop: "14px" }} />
+                  )}
+                </div>
+              );
+            }
+            return (
+              <LazyLoad height={200} offset={0} key={post._id}>
+                <PostCard {...post} key={post._id} />
+              </LazyLoad>
+            );
+          })
+        : null}
+      {fetching && <Loader />}
     </div>
   );
 };

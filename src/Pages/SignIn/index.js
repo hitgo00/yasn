@@ -16,7 +16,7 @@ import GsignIn from '../../components/GsignIn';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="white" align="center">
+    <Typography variant="body2" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/hitgo00/yasn">
         YASN
