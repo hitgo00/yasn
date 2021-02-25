@@ -26,7 +26,6 @@ export default function usePaginatedPosts({
         { cancelToken: new axios.CancelToken((c) => (cancel = c)) }
       )
       .then((res) => {
-        console.log(res);
         setPosts((prevPosts) => {
           return prevPosts.concat(res.data.posts);
         });

@@ -38,7 +38,6 @@ function App() {
       )
       .then((res) => {
         cookies.set('userDetails', res.data[0]);
-        console.log(res.data);
         if (res.data === 'invalid token') {
           cookies.remove('userCookie');
           window.location.reload();

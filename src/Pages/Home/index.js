@@ -23,7 +23,7 @@ const HomePage = (props) => {
   const { fetching, hasMore, posts } = usePaginatedPosts({
     googleToken,
     email,
-    tag: props.browseTag,
+    tag: props.tag,
     pageToFetch,
   });
 
