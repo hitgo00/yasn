@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from '@reach/router';
-import Moment from 'react-moment';
-import { red } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { Link } from "@reach/router";
+import Moment from "react-moment";
+import { red } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
   ListItem,
@@ -11,7 +11,7 @@ import {
   ListItemText,
   Avatar,
   Grid,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   avatar: {
-    backgroundColor: red[500],
+    background: "rgb(32,96,153)",
+    background:
+      "linear-gradient(180deg, rgba(32,96,153,1) 0%, rgba(76,93,125,1) 82%, rgba(133,172,172,1) 100%)",
   },
 }));
 
@@ -43,7 +45,7 @@ export default function Comment(props) {
                       {props.name
                         ? props.name[0]
                         : // + props.name.split(" ")[1][0]
-                          'X'}
+                          "X"}
                     </Avatar>
                   </Link>
                 ) : (
@@ -51,7 +53,7 @@ export default function Comment(props) {
                     {props.name
                       ? props.name[0]
                       : // + props.name.split(" ")[1][0]
-                        'X'}
+                        "X"}
                   </Avatar>
                 )}
               </ListItemAvatar>

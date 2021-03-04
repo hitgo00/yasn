@@ -70,15 +70,17 @@ export default function InputWithIcon(props) {
           {({ values, handleChange, handleBlur, handleSubmit }) => (
             <form onSubmit={handleSubmit} className={classes.root}>
               <FormControl fullWidth className={classes.margin}>
-                <InputLabel htmlFor="standard-adornment-amount">
+                {/* <InputLabel htmlFor="standard-adornment-amount">
                   Add a comment
-                </InputLabel>
+                </InputLabel> */}
                 <Input
                   id="standard-adornment-amount"
                   name="comment"
+                  
                   value={values.comment}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  placeholder="Add a comment"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton aria-label="send" size="medium" type="submit">

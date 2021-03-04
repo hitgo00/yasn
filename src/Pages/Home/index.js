@@ -52,7 +52,7 @@ const HomePage = (props) => {
                 <div ref={lastElementRef} key={post._id}>
                   <PostCard {...post} key={post._id} />
                   {hasMore && (
-                    <CircularProgress style={{ marginTop: "14px" }} />
+                    <CircularProgress style={{ marginTop: "14px", color:'white' }} />
                   )}
                 </div>
               );

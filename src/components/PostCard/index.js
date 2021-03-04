@@ -19,6 +19,7 @@ import {
   Avatar,
   IconButton,
   Typography,
+  Divider
 } from '@material-ui/core';
 import {
   Favorite as FavoriteIcon,
@@ -77,7 +78,7 @@ export default function PostCard(props) {
   };
 
   return (
-    <Card className="card" className={classes.root}>
+    <Card className={classes.root + " card"}>
       <CardHeader
         avatar={
           <Link to={`/${props.creator.username}`}>
@@ -189,7 +190,9 @@ export default function PostCard(props) {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Divider/>
         <CardContent>
+          
           <Typography variant="h6" className={classes.title}>
             Comments
           </Typography>

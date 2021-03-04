@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   Grid,
@@ -7,22 +7,22 @@ import {
   Link,
   CssBaseline,
   Avatar,
-} from '@material-ui/core';
-import GoogleButton from 'react-google-button';
-import DonutSmallIcon from '@material-ui/icons/DonutSmall';
-import { useStyles } from './styles';
-import './styles.scss';
-import GsignIn from '../../components/GsignIn';
+} from "@material-ui/core";
+import GoogleButton from "react-google-button";
+import DonutSmallIcon from "@material-ui/icons/DonutSmall";
+import { useStyles } from "./styles";
+import "./styles.scss";
+import GsignIn from "../../components/GsignIn";
 
 function Copyright() {
   return (
     <Typography variant="body2" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://github.com/hitgo00/yasn">
         YASN
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -56,14 +56,15 @@ export default function SignIn() {
             <i>It's exclusive!</i>
           </Typography>
           <br />
-
+        </div>
+        <div className={classes.paper + " googleBtnWrapper"}>
           <GsignIn
             element={
               <GoogleButton
                 type="dark"
-                className={classes.submit}
+                className={classes.submit + " googleBtn"}
                 onClick={() => {
-                  console.log('Google button clicked');
+                  console.log("Google button clicked");
                 }}
               />
             }
@@ -73,7 +74,8 @@ export default function SignIn() {
           <Typography component="h5" variant="h6">
             <i>using @daiict.ac.in email.</i>
           </Typography>
-
+        </div>
+        <div className={classes.paperCopy}>
           <Box mt={5} className={classes.copyright}>
             <Copyright />
           </Box>

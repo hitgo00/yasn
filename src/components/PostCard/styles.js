@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     minWidth: '28vw',
     maxWidth: 400,
     Width: '89vw',
+    borderRadius: "6px",
     [theme.breakpoints.down('sm')]: {
       minWidth: '88vw',
 
@@ -32,6 +33,10 @@ export const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    background: "rgb(32,96,153)",
+    background: "linear-gradient(180deg, rgba(32,96,153,1) 0%, rgba(76,93,125,1) 82%, rgba(133,172,172,1) 100%)",
   },
+  title:{
+    marginTop: '8px'
+  }
 }));

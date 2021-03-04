@@ -257,11 +257,11 @@ export default function NavAppBar(props) {
             </IconButton>
             <Link to="/">
               <IconButton edge="start">
-                <DonutSmallIcon />
+                <DonutSmallIcon style={{color:'white'}} />
               </IconButton>
             </Link>
             <Typography className={classes.title} variant="h6" noWrap>
-              DA-Connect
+              Connect
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
