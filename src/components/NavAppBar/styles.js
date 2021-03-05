@@ -26,7 +26,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: "auto",
+      maxWidth: '210px',
     },
   },
   searchIcon: {
@@ -38,8 +38,8 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  inputRoot: {
-    color: "inherit",
+  inputRoot: { 
+    marginLeft: '48px'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -47,9 +47,13 @@ export const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
+    color: "white",
     [theme.breakpoints.up("md")]: {
       width: "20ch",
     },
+  },
+  endAdornment:{
+    color: "white",
   },
   sectionDesktop: {
     display: "none",

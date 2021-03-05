@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -16,25 +16,32 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import CallSplitIcon from '@material-ui/icons/CallSplit';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import CreateIcon from '@material-ui/icons/Create';
-import GestureIcon from '@material-ui/icons/Gesture';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import DonutSmallIcon from '@material-ui/icons/DonutSmall';
-import { Link } from '@reach/router';
-import { Cookies } from 'react-cookie';
-import { useStyles } from './styles';
-import { useTheme } from '@material-ui/core/styles';
+  TextField,
+} from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import MailIcon from "@material-ui/icons/Mail";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import CallSplitIcon from "@material-ui/icons/CallSplit";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import CreateIcon from "@material-ui/icons/Create";
+import GestureIcon from "@material-ui/icons/Gesture";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import DonutSmallIcon from "@material-ui/icons/DonutSmall";
+import { Link } from "@reach/router";
+import { Cookies } from "react-cookie";
+import { useStyles } from "./styles";
+import "./styles.scss";
+import { useTheme } from "@material-ui/core/styles";
+
+import axios from "axios";
+import queryString from "query-string";
+import { ConnectServerUrl } from "../../utils/constants";
 
 const cookies = new Cookies();
 
@@ -71,19 +78,19 @@ export default function NavAppBar(props) {
 
   const handleLogOut = () => {
     setMobileMoreAnchorEl(null);
-    cookies.remove('userCookie');
-    cookies.remove('userDetails');
+    cookies.remove("userCookie");
+    cookies.remove("userDetails");
     window.location.reload();
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -96,21 +103,21 @@ export default function NavAppBar(props) {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <Link to="/chat" className={classes.link}>
         <MenuItem onClick={handleMobileMenuClose}>
           <IconButton aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={'ßeta'} color="secondary">
+            <Badge badgeContent={"ßeta"} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -167,33 +174,33 @@ export default function NavAppBar(props) {
       <List>
         {/* <Link to="/home/Project"> */}
         <a href="/home/Project">
-          <ListItem button key={'Projects'}>
+          <ListItem button key={"Projects"}>
             <ListItemIcon>
               <GitHubIcon />
             </ListItemIcon>
-            <ListItemText primary={'Projects'} />
+            <ListItemText primary={"Projects"} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Writings"> */}
         <a href="/home/Writings">
-          <ListItem button key={'Writings'}>
+          <ListItem button key={"Writings"}>
             <ListItemIcon>
               <CreateIcon />
             </ListItemIcon>
-            <ListItemText primary={'Writings'} />
+            <ListItemText primary={"Writings"} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Artwork" onClick={handleTagLink}> */}
         <a href="/home/Artwork">
-          <ListItem button key={'Artwork'}>
+          <ListItem button key={"Artwork"}>
             <ListItemIcon>
               <GestureIcon />
             </ListItemIcon>
-            <ListItemText primary={'Artwork'} />
+            <ListItemText primary={"Artwork"} />
           </ListItem>
         </a>
         {/* </Link> */}
@@ -203,33 +210,33 @@ export default function NavAppBar(props) {
       <List>
         {/* <Link to="/home/Music"> */}
         <a href="/home/Music">
-          <ListItem button key={'Music'}>
+          <ListItem button key={"Music"}>
             <ListItemIcon>
               <MusicNoteIcon />
             </ListItemIcon>
-            <ListItemText primary={'Music'} />
+            <ListItemText primary={"Music"} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Dance"> */}
         <a href="/home/Dance">
-          <ListItem button key={'Dance'}>
+          <ListItem button key={"Dance"}>
             <ListItemIcon>
               <DirectionsWalkIcon />
             </ListItemIcon>
-            <ListItemText primary={'Dance'} />
+            <ListItemText primary={"Dance"} />
           </ListItem>
         </a>
         {/* </Link> */}
 
         {/* <Link to="/home/Other"> */}
         <a href="/home/Other">
-          <ListItem button key={'Other'}>
+          <ListItem button key={"Other"}>
             <ListItemIcon>
               <CallSplitIcon />
             </ListItemIcon>
-            <ListItemText primary={'Other'} />
+            <ListItemText primary={"Other"} />
           </ListItem>
         </a>
         {/* </Link> */}
@@ -237,6 +244,30 @@ export default function NavAppBar(props) {
       <Divider />
     </div>
   );
+
+  const userCookie = cookies.get("userCookie");
+  const googleToken = userCookie.Token;
+  const email = userCookie.Email;
+
+  const [searchResults, setSearchResults] = useState([]);
+
+  const onSearchInputChange = (event) => {
+    const searchString = event.target.value;
+    if (searchString) {
+      axios
+        .get(
+          `${ConnectServerUrl}/searchUsers?` +
+            queryString.stringify(
+              { searchString, googleToken, email },
+              { withCredentials: true }
+            )
+        )
+        .then((res) => {
+          setSearchResults(res.data);
+        })
+        .catch(console.log);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -257,7 +288,7 @@ export default function NavAppBar(props) {
             </IconButton>
             <Link to="/">
               <IconButton edge="start">
-                <DonutSmallIcon style={{color:'white'}} />
+                <DonutSmallIcon style={{ color: "white" }} />
               </IconButton>
             </Link>
             <Typography className={classes.title} variant="h6" noWrap>
@@ -267,20 +298,37 @@ export default function NavAppBar(props) {
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase
-                placeholder="Search…"
+              <Autocomplete
+                id="free-solo-demo"
+                freeSolo
+                clearOnBlur
+                options={searchResults}
+                className="searchBox"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
+                  endAdornment: classes.endAdornment,
                 }}
-                inputProps={{ 'aria-label': 'search' }}
+                getOptionLabel={(option) => option.name}
+                renderOption={(option, state) => (
+                  <Link to={`/user/${option.username}`}>
+                    <Typography>{option.name}</Typography>
+                  </Link>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    onChange={onSearchInputChange}
+                    placeholder="Search"
+                  />
+                )}
               />
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <Link to="/chat">
                 <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={'ßeta'} color="secondary">
+                  <Badge badgeContent={"ßeta"} color="secondary">
                     <MailIcon />
                   </Badge>
                 </IconButton>
@@ -328,7 +376,7 @@ export default function NavAppBar(props) {
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{

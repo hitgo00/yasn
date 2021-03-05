@@ -81,7 +81,7 @@ export default function PostCard(props) {
     <Card className={classes.root + " card"}>
       <CardHeader
         avatar={
-          <Link to={`/${props.creator.username}`}>
+          <Link to={`/user/${props.creator.username}`}>
             <Avatar aria-label="recipe" className={classes.avatar}>
               {props.creator
                 ? props.creator.name

@@ -17,7 +17,6 @@ export default function ProfilePage(props) {
   const [userDetails, SetUserDetails] = useState({});
 
   useEffect(() => {
-    console.log('get request');
     if (props.username) {
       axios
         .get(
@@ -28,7 +27,6 @@ export default function ProfilePage(props) {
             )
         )
         .then((res) => {
-          console.log(res.data[0]);
           SetUserDetails(res.data[0]);
           setLoading(false);
         })

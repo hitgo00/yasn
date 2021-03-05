@@ -1,0 +1,15 @@
+.searchBox{
+    .MuiTextField-root{
+        margin-top: 4px;
+    }
+    .MuiInput-underline:before{
+        border-bottom: 0px !important;
+    }
+    .MuiInput-underline:after{
+        border-bottom: 0px !important;
+    }
+    .MuiSvgIcon-root{
+        color: white;
+        margin-right: 4px;
+    }
+}
