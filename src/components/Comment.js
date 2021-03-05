@@ -40,7 +40,7 @@ export default function Comment(props) {
             <ListItem>
               <ListItemAvatar>
                 {props.username ? (
-                  <Link to={`/${props.username}`}>
+                  <Link to={`/user/${props.username}`}>
                     <Avatar className={classes.avatar}>
                       {props.name
                         ? props.name[0]

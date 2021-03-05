@@ -58,7 +58,7 @@ function App() {
                   <HomePage path="/home/:tag" />
                   <ChatApp path="/chat" />
                   <ProfilePage path="/profile" />
-                  <ProfilePage path="/:username" />
+                  <ProfilePage path="/user/:username" />
                   <AddPostPage path="/add" />
                   <SignIn path="/signin" />
                   <HomePage path="*" />
