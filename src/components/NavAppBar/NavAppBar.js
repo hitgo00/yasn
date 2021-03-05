@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { debounce } from "lodash";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
   Badge,
   MenuItem,
   Menu,
@@ -251,21 +251,25 @@ export default function NavAppBar(props) {
 
   const [searchResults, setSearchResults] = useState([]);
 
+  const searchUsers = debounce((searchString) => {
+    axios
+      .get(
+        `${ConnectServerUrl}/searchUsers?` +
+          queryString.stringify(
+            { searchString, googleToken, email },
+            { withCredentials: true }
+          )
+      )
+      .then((res) => {
+        setSearchResults(res.data);
+      })
+      .catch(console.log);
+  }, 400);
+
   const onSearchInputChange = (event) => {
     const searchString = event.target.value;
     if (searchString) {
-      axios
-        .get(
-          `${ConnectServerUrl}/searchUsers?` +
-            queryString.stringify(
-              { searchString, googleToken, email },
-              { withCredentials: true }
-            )
-        )
-        .then((res) => {
-          setSearchResults(res.data);
-        })
-        .catch(console.log);
+      searchUsers(searchString);
     }
   };
 
