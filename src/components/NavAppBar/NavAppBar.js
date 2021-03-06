@@ -323,7 +323,7 @@ export default function NavAppBar(props) {
                   <TextField
                     {...params}
                     onChange={onSearchInputChange}
-                    placeholder="Search users"
+                    placeholder="Search DAIICTians"
                   />
                 )}
               />
