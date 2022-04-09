@@ -21,7 +21,7 @@
     "easy-peasy": "^3.3.0",
     "formik": "^2.1.4",
     "lodash": "^4.17.21",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
